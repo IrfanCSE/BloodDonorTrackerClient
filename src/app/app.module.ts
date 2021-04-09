@@ -7,9 +7,19 @@ import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from './core/nav/nav.component';
+import { HomeComponent } from './core/home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './account/register/register.component';
 @NgModule({
-  declarations: [AppComponent, AccountComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AccountComponent,
+    NavComponent,
+    RegisterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,6 +27,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     AngularMaterialModule,
     NgbModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

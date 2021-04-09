@@ -1,3 +1,5 @@
+import { User } from './../../core/models/user';
+import { AccountService } from 'src/app/account/account.service';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -7,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ConfirmedValidator } from '../../core/confirmed.validator';
+import { UserReg } from 'src/app/core/models/userReg';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +18,15 @@ import { ConfirmedValidator } from '../../core/confirmed.validator';
 })
 export class RegisterComponent implements OnInit {
   passMatch = true;
+  user: UserReg = {
+    confirmPassword: '',
+    dateOfBirth: new Date(),
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    userName: '',
+  };
 
   registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -28,7 +40,7 @@ export class RegisterComponent implements OnInit {
     lastName: ['', [Validators.required]],
     dateOfBirth: ['', [Validators.required]],
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private service: AccountService) {}
 
   ngOnInit() {}
 
@@ -36,7 +48,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  change = () => {
+  confirmPassCheck = () => {
     if (
       this.registerForm.controls.password.value ===
       this.registerForm.controls.confirmPassword.value
@@ -49,5 +61,16 @@ export class RegisterComponent implements OnInit {
 
   onSubmit = () => {
     console.log(this.getRegister.password.value);
+    const get = this.getRegister.password.value;
+    this.user = {
+      confirmPassword: get.confirmPassword,
+      dateOfBirth: get.dateOfBirth,
+      email: get.email,
+      firstName: get.firstName,
+      lastName: get.lastName,
+      password: get.password,
+      userName: get.userName,
+    };
+    this.service.registerUser(this.user).subscribe((res) => console.log(res));
   };
 }

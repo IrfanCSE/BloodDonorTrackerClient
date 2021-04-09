@@ -1,3 +1,5 @@
+import { User } from './../core/models/user';
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import {
   EmailValidator,
@@ -17,26 +19,27 @@ import { AccountService } from './account.service';
 export class AccountComponent implements OnInit {
   hide = true;
 
-  constructor(private fb: FormBuilder, private service: AccountService) {}
+  constructor(
+    private fb: FormBuilder,
+    private service: AccountService,
+    private notify: ToastrService
+  ) {}
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: [
-      '',
-      [Validators.required,
-      Validators.pattern('^[a-zA-Z]+@[0-9]+$'),]
-    ],
+    password: ['', [Validators.required]],
   });
 
   ngOnInit(): void {}
 
-
-  public get getLogin(){
+  public get getLogin() {
     return this.loginForm.controls;
   }
 
-
   onSubmit() {
-    console.log(this.getLogin);
+    this.service.login(this.loginForm.value).subscribe((res: any) => {
+      console.log(res?.userName);
+      this.notify.success(`Hi ${res?.userName} , Wellcome back!`);
+    });
   }
 }

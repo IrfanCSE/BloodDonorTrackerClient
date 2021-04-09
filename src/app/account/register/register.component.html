@@ -40,7 +40,7 @@
 
     <mat-form-field class="mt-3">
       <mat-label>password</mat-label>
-      <input (change)="change()" name="password" #pwValue type="password" matInput placeholder="pas***rd" value=""
+      <input (change)="confirmPassCheck()" name="password" #pwValue type="password" matInput placeholder="pas***rd" value=""
         formControlName="password" required>
       <mat-error *ngIf="getRegister.password.touched && getRegister.password.invalid">
         Please enter a valid password
@@ -50,7 +50,7 @@
     <mat-form-field class="mt-3">
       <mat-label>confirm_password</mat-label>
       <input name="confirmPassword" #cwValue type="password" matInput placeholder="c*n**rm" value=""
-        formControlName="confirmPassword" required (change)="change()">
+        formControlName="confirmPassword" required (change)="confirmPassCheck()">
       <mat-hint *ngIf="getRegister.confirmPassword.touched && !passMatch">
         <mat-error>
           password missmatched

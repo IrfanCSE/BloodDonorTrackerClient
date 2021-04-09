@@ -5,7 +5,7 @@
 <div class="row justify-content-center align-content-center">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>email</mat-label>
       <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
       <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
@@ -13,57 +13,61 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>user_name</mat-label>
-      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
-      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+      <input type="text" matInput placeholder="_user" value="" formControlName="userName" required>
+      <mat-error *ngIf="getRegister.userName.touched && getRegister.userName.invalid">
         Please enter a valid email address
       </mat-error>
     </mat-form-field>
     <br>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>first_name</mat-label>
-      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
-      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+      <input type="text" matInput placeholder="" value="" formControlName="firstName" required>
+      <mat-error *ngIf="getRegister.firstName.touched && getRegister.firstName.invalid">
         Please enter a valid email address
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>last_name</mat-label>
-      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
-      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+      <input type="text" matInput placeholder="" value="" formControlName="lastName" required>
+      <mat-error *ngIf="getRegister.lastName.touched && getRegister.lastName.invalid">
         Please enter a valid email address
       </mat-error>
     </mat-form-field>
     <br>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>password</mat-label>
-      <input type="password" matInput placeholder="pas***rd" value="" formControlName="password" required>
+      <input (change)="change()" name="password" #pwValue type="password" matInput placeholder="pas***rd" value=""
+        formControlName="password" required>
       <mat-error *ngIf="getRegister.password.touched && getRegister.password.invalid">
         Please enter a valid password
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>confirm_password</mat-label>
-      <input type="password" matInput placeholder="pas***rd" value="" formControlName="password" required>
-      <mat-error *ngIf="getRegister.password.touched && getRegister.password.invalid">
-        Please enter a valid password
-      </mat-error>
+      <input name="confirmPassword" #cwValue type="password" matInput placeholder="c*n**rm" value=""
+        formControlName="confirmPassword" required (change)="change()">
+      <mat-hint *ngIf="getRegister.confirmPassword.touched && !passMatch">
+        <mat-error>
+          password missmatched
+        </mat-error>
+      </mat-hint>
     </mat-form-field>
     <br>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="mt-3">
       <mat-label>date_of_birth</mat-label>
-      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
+      <input type="date" matInput placeholder="" value="" formControlName="dateOfBirth" required>
       <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
         Please enter a valid email address
       </mat-error>
     </mat-form-field>
 
-    <button mat-button type="submit" [disabled]="!registerForm.valid">Login</button>
+    <button mat-button type="submit" [disabled]="!registerForm.valid || !passMatch">Login</button>
 
   </form>
 </div>

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './../core/models/user';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
@@ -18,11 +19,14 @@ import { AccountService } from './account.service';
 })
 export class AccountComponent implements OnInit {
   hide = true;
+  returnUrl = '/';
 
   constructor(
     private fb: FormBuilder,
     private service: AccountService,
-    private notify: ToastrService
+    private notify: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   loginForm = this.fb.group({
@@ -30,7 +34,9 @@ export class AccountComponent implements OnInit {
     password: ['', [Validators.required]],
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+  }
 
   public get getLogin() {
     return this.loginForm.controls;
@@ -38,8 +44,8 @@ export class AccountComponent implements OnInit {
 
   onSubmit() {
     this.service.login(this.loginForm.value).subscribe((res: any) => {
-      console.log(res?.userName);
       this.notify.success(`Hi ${res?.userName} , Wellcome back!`);
+      this.router.navigateByUrl('/');
     });
   }
 }

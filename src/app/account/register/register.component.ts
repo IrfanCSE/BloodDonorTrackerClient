@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserReg } from './../../core/models/userReg';
 import { User } from './../../core/models/user';
 import { AccountService } from 'src/app/account/account.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +12,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ConfirmedValidator } from '../../core/confirmed.validator';
-import { UserReg } from 'src/app/core/models/userReg';
 
 @Component({
   selector: 'app-register',
@@ -18,15 +20,6 @@ import { UserReg } from 'src/app/core/models/userReg';
 })
 export class RegisterComponent implements OnInit {
   passMatch = true;
-  user: UserReg = {
-    confirmPassword: '',
-    dateOfBirth: new Date(),
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    userName: '',
-  };
 
   registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -40,7 +33,12 @@ export class RegisterComponent implements OnInit {
     lastName: ['', [Validators.required]],
     dateOfBirth: ['', [Validators.required]],
   });
-  constructor(private fb: FormBuilder, private service: AccountService) {}
+  constructor(
+    private fb: FormBuilder,
+    private service: AccountService,
+    private notify: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -60,17 +58,9 @@ export class RegisterComponent implements OnInit {
   };
 
   onSubmit = () => {
-    console.log(this.getRegister.password.value);
-    const get = this.getRegister.password.value;
-    this.user = {
-      confirmPassword: get.confirmPassword,
-      dateOfBirth: get.dateOfBirth,
-      email: get.email,
-      firstName: get.firstName,
-      lastName: get.lastName,
-      password: get.password,
-      userName: get.userName,
-    };
-    this.service.registerUser(this.user).subscribe((res) => console.log(res));
+    this.service.registerUser(this.registerForm.value).subscribe((res: any) => {
+      this.notify.success(res?.message);
+      this.router.navigateByUrl('/account');
+    });
   };
 }

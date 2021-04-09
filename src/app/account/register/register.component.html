@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center pb-3">
+  <h3 class="font-italic">Welcome,<strong>Register</strong> Your Account</h3>
+</div>
+
+<div class="row justify-content-center align-content-center">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>email</mat-label>
+      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
+      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>user_name</mat-label>
+      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
+      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>first_name</mat-label>
+      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
+      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>last_name</mat-label>
+      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
+      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>password</mat-label>
+      <input type="password" matInput placeholder="pas***rd" value="" formControlName="password" required>
+      <mat-error *ngIf="getRegister.password.touched && getRegister.password.invalid">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>confirm_password</mat-label>
+      <input type="password" matInput placeholder="pas***rd" value="" formControlName="password" required>
+      <mat-error *ngIf="getRegister.password.touched && getRegister.password.invalid">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>date_of_birth</mat-label>
+      <input type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
+      <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button type="submit" [disabled]="!registerForm.valid">Login</button>
+
+  </form>
+</div>
+
+<div class="mt-5 row justify-content-center align-content-center">
+  <a routerLink="/account">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="bold" class="pl-3 pr-3">
+        have an account, login
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </a>
+</div>

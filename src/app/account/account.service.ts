@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User } from './../core/models/user';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -15,7 +16,7 @@ export class AccountService {
   currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router:Router) {}
 
   loadCurrentUser = (token: any): any => {
     console.log('token: ' + token);
@@ -38,6 +39,12 @@ export class AccountService {
           return user;
         })
       );
+  };
+
+  logout = () => {
+    localStorage.removeItem('token');
+    this.currentUserSource.next();
+    this.router.navigateByUrl('/account');
   };
 
   registerUser = (user: UserReg) => {

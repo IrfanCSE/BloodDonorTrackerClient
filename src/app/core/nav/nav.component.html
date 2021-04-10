@@ -1,51 +1,77 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-  <div class="container-fluid">
+<div
+  class="d-flex flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm justify-content-between fixed">
 
-    <a class="navbar-brand" routerLink="/" routerLinkActive="router-link-active"><img
-        src="../../../assets/logo/bdtLogo.png" width="35"></a>
+  <img src="assets/logo/bdtLogo.png" height="35px" alt="skinet-logo" routerLink="/">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <button class="mat-button">
+      <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     </button>
+    <button class="mat-button">
+      <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Donor</a>
+    </button>
+    <button class="mat-button">
+      <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Blood</a>
+    </button>
+  </nav>
 
-    <div class="collapse navbar-collapse row justify-content-end">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <div class="d-flex align-items-center">
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
-            <button _ngcontent-bmx-c336="" mat-raised-button="" color="primary"
-              class="mat-focus-indicator mat-raised-button mat-button-base mat-primary">
-              <span class="mat-button-wrapper">Home</span>
-              <span matripple="" class="mat-ripple mat-button-ripple"></span>
-              <span class="mat-button-focus-overlay"></span>
-            </button>
-          </a>
-        </li>
+    <ng-container *ngIf="(user$|async) == null">
+      <div class="btn-group" ngbDropdown>
+        <button class="btn mat-button" id="dropdownForm1" ngbDropdownToggle>access_your_account</button>
+        <ul id="dropdown-animated" ngbDropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+          <li role="menuitem"><a routerLink="/account" class="dropdown-item">login</a></li>
+          <li role="menuitem"><a routerLink="/register" class="dropdown-item">register</a></li>
+        </ul>
+      </div>
+    </ng-container>
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/register">
-            <button _ngcontent-bmx-c336="" mat-raised-button="" color="primary"
-              class="mat-focus-indicator mat-raised-button mat-button-base mat-primary">
-              <span class="mat-button-wrapper">Register</span>
-              <span matripple="" class="mat-ripple mat-button-ripple"></span>
-              <span class="mat-button-focus-overlay"></span>
-            </button>
-          </a>
-        </li>
+    <ng-container *ngIf="(user$|async)as user">
+      <div class="btn-group" ngbDropdown>
+        <button class="mat-button" id="dropdownForm1" ngbDropdownToggle>Wellcome {{user.userName}}</button>
+        <ul id="dropdown-animated" ngbDropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+          <li role="menuitem"><a class="dropdown-item">Profile</a></li>
+          <li role="menuitem"><a class="dropdown-item">Information</a></li>
+          <div class="dropdown-divider"></div>
+          <li role="menuitem"><a (click)="logout()" class="dropdown-item">Logout</a></li>
+        </ul>
+      </div>
+    </ng-container>
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/account">
-            <button _ngcontent-bmx-c336="" mat-raised-button="" color="primary"
-              class="mat-focus-indicator mat-raised-button mat-button-base mat-primary">
-              <span class="mat-button-wrapper">Login</span>
-              <span matripple="" class="mat-ripple mat-button-ripple"></span>
-              <span class="mat-button-focus-overlay"></span>
-            </button>
-          </a>
-        </li>
+  </div>
 
-      </ul>
+</div>
+
+
+<!-- <div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownForm1" ngbDropdownToggle>Toggle dropdown</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+        <form class="px-4 py-3">
+          <div class="form-group">
+            <label for="exampleDropdownFormEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com"
+              autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="exampleDropdownFormPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password"
+              autocomplete="current-password">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+            <label class="form-check-label" for="dropdownCheck">
+              Remember me
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem>New around here? Sign up</button>
+        <button ngbDropdownItem>Forgot password?</button>
+      </div>
     </div>
   </div>
-</nav>
+</div> -->

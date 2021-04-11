@@ -16,6 +16,8 @@ import { RegisterComponent } from './account/register/register.component';
 import { ErrorInterceptor } from './core/intercepter/intercept/error-interceptor.interceptor';
 import { BusyInterceptor } from './core/intercepter/intercept/busy.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { DonorComponent } from './donor/donor.component';
+import { EditDonorComponent } from './donor/edit-donor/edit-donor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +25,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AccountComponent,
     NavComponent,
     RegisterComponent,
+    DonorComponent,
+    EditDonorComponent,
   ],
   imports: [
     BrowserModule,

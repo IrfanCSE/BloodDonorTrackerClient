@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+// @import '~font-awesome/css/font-awesome.min.css';
+@import '~font-awesome/scss/font-awesome.scss';
+// @import '~ngx-toastr/toastr.css';
+@import '../node_modules/ngx-toastr/toastr-bs4-alert.scss';
+
 html,
 body {
   height: 100%;
@@ -10,12 +19,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import '~font-awesome/css/font-awesome.min.css';
-@import '~ngx-toastr/toastr.css';
 
 
 a {
@@ -34,6 +37,8 @@ img {
   }
 }
 
-.btn{
-  &:focus{box-shadow: none;}
+.btn {
+  &:focus {
+    box-shadow: none;
+  }
 }

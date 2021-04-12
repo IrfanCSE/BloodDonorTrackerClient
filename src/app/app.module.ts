@@ -18,6 +18,9 @@ import { BusyInterceptor } from './core/intercepter/intercept/busy.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DonorComponent } from './donor/donor.component';
 import { EditDonorComponent } from './donor/edit-donor/edit-donor.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './core/map/map.component';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,7 @@ import { EditDonorComponent } from './donor/edit-donor/edit-donor.component';
     RegisterComponent,
     DonorComponent,
     EditDonorComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,10 @@ import { EditDonorComponent } from './donor/edit-donor/edit-donor.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCBwRULi97IvZ_Ak1YNesVXpxk4P0iiBpM',
+    }),
+    AgmSnazzyInfoWindowModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

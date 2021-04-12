@@ -24,7 +24,7 @@ export class DonorComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.account.currentUser$;
-    this.user$.subscribe((res) => (this.userId = res.userName));
+    this.user$.subscribe((res) => (this.userId = res.userId));
     this.getDonorInfo();
   }
 
@@ -33,7 +33,8 @@ export class DonorComponent implements OnInit {
       (res) => {
         this.donor = res;
       },
-      () => {
+      (error) => {
+        console.log(error);
         this.router.navigateByUrl('donorUpdate');
       }
     );

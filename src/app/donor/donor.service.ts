@@ -12,11 +12,14 @@ export class DonorService {
   constructor(private http: HttpClient) {}
 
   getDonor = (user: string) => {
-    return this.http.get<UpdateDonor>(`${this.baseUrl}Donor/GetDonorById?userId=${user}`);
+    return this.http.get<UpdateDonor>(
+      `${this.baseUrl}Donor/GetDonorById?userId=${user}`
+    );
   };
 
   updateDonor = (donor: UpdateDonor) => {
-    return this.http.post(`${this.baseUrl}/api/Donor/PostDonorInfo`, donor);
+    console.log(donor);
+    return this.http.post(`${this.baseUrl}Donor/PostDonorInfo`, donor);
   };
 
   locationUpdate = (donorId: number, longitude: number, latitude: number) => {

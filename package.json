@@ -11,6 +11,8 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "*",
+    "@agm/snazzy-info-window": "*",
     "@angular/animations": "~11.2.8",
     "@angular/cdk": "^11.2.7",
     "@angular/common": "~11.2.8",
@@ -29,6 +31,7 @@
     "ngx-spinner": "^11.0.1",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
+    "snazzy-info-window": "*",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
@@ -36,6 +39,7 @@
     "@angular-devkit/build-angular": "~0.1102.7",
     "@angular/cli": "~11.2.7",
     "@angular/compiler-cli": "~11.2.8",
+    "@types/googlemaps": "^3.39.13",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",

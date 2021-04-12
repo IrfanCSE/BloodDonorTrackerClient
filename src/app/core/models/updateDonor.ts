@@ -4,6 +4,7 @@ export interface UpdateDonor {
   nid: string;
   phone: string;
   address: string;
+  donorIdPk: number;
   longitude: number;
   latitude: number;
 }

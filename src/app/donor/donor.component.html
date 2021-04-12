@@ -1,19 +1,44 @@
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar class="fa fa-heartbeat"></div>
-    <!-- <mat-card-title>{{}}</mat-card-title> -->
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>Your_Information</mat-card-title>
+    <mat-card-subtitle>summery</mat-card-subtitle>
   </mat-card-header>
   <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu"> -->
   <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Donor Name</mat-label>
+            <input matInput disabled value="{{donor.name}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput disabled value="{{donor.phone}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>NID</mat-label>
+            <input matInput disabled value="{{donor.nid}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput disabled value="{{donor.address}}">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button mat-button>Location Update</button>
+    <button mat-button><a routerLink='/donorUpdate'>Update Information</a></button>
   </mat-card-actions>
 </mat-card>
+
+<app-map [longitude]="donor.longitude" [latitude]="donor.latitude"></app-map>

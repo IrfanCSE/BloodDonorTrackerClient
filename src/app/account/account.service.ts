@@ -16,7 +16,7 @@ export class AccountService {
   currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient,private router:Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   loadCurrentUser = (token: any): any => {
     console.log('token: ' + token);
@@ -39,6 +39,17 @@ export class AccountService {
           return user;
         })
       );
+  };
+
+  tokenFromLocal = () => {
+    return localStorage.getItem('token');
+  };
+
+  authHeader = () => {
+    return new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.tokenFromLocal()}`
+    );
   };
 
   logout = () => {

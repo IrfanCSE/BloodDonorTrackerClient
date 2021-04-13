@@ -35,7 +35,9 @@ export class AccountComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.queryParams.returnUrl);
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    console.log(this.returnUrl);
   }
 
   public get getLogin() {
@@ -45,7 +47,7 @@ export class AccountComponent implements OnInit {
   onSubmit() {
     this.service.login(this.loginForm.value).subscribe((res: any) => {
       this.notify.success(`Hi ${res?.userName} , Wellcome back!`);
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl(this.returnUrl);
     });
   }
 }

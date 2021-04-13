@@ -35,9 +35,9 @@ export class ErrorInterceptor implements HttpInterceptor {
           //   this.router.navigateByUrl('/server-error');
           // }
 
-          // if (error.status === 401){
-          //   this.toastr.error(error.statusText, error.status);
-          // }
+          if (error.status === 401) {
+            this.toastr.error(`you are not authorized`);
+          }
 
           this.toastr.error(error.error.message);
         }

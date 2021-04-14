@@ -6,6 +6,7 @@ import { HomeComponent } from './core/home/home.component';
 import { AuthGuard } from './core/intercepter/guards/auth.guard';
 import { DonorComponent } from './donor/donor.component';
 import { EditDonorComponent } from './donor/edit-donor/edit-donor.component';
+import { HealthReportComponent } from './donor/health-report/health-report.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path: 'donorUpdate',
     component: EditDonorComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'report',
+    component: HealthReportComponent,
     canActivate: [AuthGuard],
   },
 ];

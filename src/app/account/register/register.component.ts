@@ -6,12 +6,15 @@ import { AccountService } from 'src/app/account/account.service';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormBuilder,
   FormGroup,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ConfirmedValidator } from '../../core/confirmed.validator';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +25,11 @@ export class RegisterComponent implements OnInit {
   passMatch = true;
 
   registerForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [Validators.required, Validators.email],
+      [this.emailExistAsync()],
+    ],
     password: [
       '',
       [Validators.required, Validators.pattern('^[a-zA-Z]+@[0-9]+$')],
@@ -40,10 +47,25 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.getRegister.email);
+  }
 
   public get getRegister(): any {
     return this.registerForm.controls;
+  }
+
+  emailExistAsync(): AsyncValidatorFn {
+    return (control) => {
+      if (!control.value) {
+        return of(null);
+      }
+      return this.service.isEmailExist(control.value).pipe(
+        map((res) => {
+          return res ? { emailExist: true } : null;
+        })
+      );
+    };
   }
 
   confirmPassCheck = () => {

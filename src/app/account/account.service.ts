@@ -76,4 +76,10 @@ export class AccountService {
         })
       );
   };
+
+  isEmailExist = (email: string) => {
+    return this.http.get<boolean>(
+      `${this.baseUrl}Identity/emailExists?email=${email}`
+    );
+  };
 }

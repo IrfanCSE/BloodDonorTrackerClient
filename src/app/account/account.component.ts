@@ -35,9 +35,7 @@ export class AccountComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.queryParams.returnUrl);
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-    console.log(this.returnUrl);
   }
 
   public get getLogin() {

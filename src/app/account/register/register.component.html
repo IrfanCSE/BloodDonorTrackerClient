@@ -9,7 +9,9 @@
       <mat-label>email</mat-label>
       <input name="email" type="email" matInput placeholder="email@mail.com" value="" formControlName="email" required>
       <mat-error *ngIf="getRegister.email.touched && getRegister.email.invalid">
-        Please enter a valid email address
+        <mat-error *ngIf="getRegister.email.errors?.emailExist">email already exist</mat-error>
+        <mat-error *ngIf="getRegister.email.errors?.required">email address required</mat-error>
+        <mat-error *ngIf="getRegister.email.errors?.email">please enter a valid email address</mat-error>
       </mat-error>
     </mat-form-field>
 

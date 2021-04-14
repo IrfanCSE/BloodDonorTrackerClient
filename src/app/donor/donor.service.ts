@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { UpdateDonor } from '../core/models/updateDonor';
-import { ThisReceiver } from '@angular/compiler';
-
+import { Report } from '../core/models/report';
+import { CommonDDL } from '../core/models/commonDDL';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,15 +21,34 @@ export class DonorService {
     );
   };
 
+  getReport = (userId: number) => {
+    return this.http.get<Report>(
+      `${this.baseUrl}HealthReport/GetHealthReportById?donorId=${userId}`
+    );
+  };
+
+  getBloodGroups = () => {
+    return this.http.get<CommonDDL>(
+      `${this.baseUrl}HealthReport/GetBloodGroups`
+    );
+  };
+
   updateDonor = (donor: UpdateDonor) => {
     return this.http.post(`${this.baseUrl}Donor/PostDonorInfo`, donor, {
       headers: this.header,
     });
   };
 
-  locationUpdate = (donorId: number, longitude: number, latitude: number) => {
+  updateReport = (report: Report) => {
+    return this.http.post(
+      `${this.baseUrl}HealthReport/PostHealthReport`,
+      report
+    );
+  };
+
+  locationUpdate = (userId: string, longitude: number, latitude: number) => {
     return this.http.put(
-      `${this.baseUrl}Donor/UpdateLocation?donorId=${donorId}&Longitude=${longitude}&Latitude=${latitude}`,
+      `${this.baseUrl}Donor/UpdateLocation?userId=${userId}&Longitude=${longitude}&Latitude=${latitude}`,
       null,
       { headers: this.header }
     );

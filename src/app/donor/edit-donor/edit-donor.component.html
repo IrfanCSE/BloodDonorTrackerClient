@@ -1,62 +1,52 @@
-<form [formGroup]="donorForm" (ngSubmit)='OnSubmit()'>
-  <mat-form-field class="example-full-width">
-    <mat-label>help us by your information</mat-label>
-    <input matInput disabled value="DONOR INFORMATION">
-  </mat-form-field>
+<mat-tab-group mat-align-tabs="start">
 
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="example-full-width">
-          <mat-label>Donor Name</mat-label>
-          <input matInput formControlName="name">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width">
-          <mat-label>Phone Number</mat-label>
-          <input matInput formControlName="nid">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width">
-          <mat-label>NID</mat-label>
-          <input matInput formControlName="phone">
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+  <mat-tab label="Basic Information">
+    <form [formGroup]="donorForm" (ngSubmit)='OnSubmit()'>
+      <mat-form-field class="example-full-width">
+        <mat-label>help us by your information</mat-label>
+        <input matInput disabled value="DONOR INFORMATION">
+      </mat-form-field>
 
-  <p>
-    <mat-form-field class="example-full-width">
-      <mat-label>Address</mat-label>
-      <textarea formControlName="address" matInput placeholder="chittagong, bangladesh"></textarea>
-    </mat-form-field>
-  </p>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Donor Name</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="nid">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>NID</mat-label>
+              <input matInput formControlName="phone">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
 
-  <button type="submit" mat-button>Update</button>
+      <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Address</mat-label>
+          <textarea formControlName="address" matInput placeholder="chittagong, bangladesh"></textarea>
+        </mat-form-field>
+      </p>
 
-  <!-- <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="example-full-width">
-          <mat-label>City</mat-label>
-          <input matInput placeholder="Ex. San Francisco">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width">
-          <mat-label>State</mat-label>
-          <input matInput placeholder="Ex. California">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width">
-          <mat-label>Postal Code</mat-label>
-          <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
-          <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-        </mat-form-field>
-      </td>
-    </tr>
-  </table> -->
-</form>
+      <button type="submit" mat-button>Update</button>
+    </form>
+  </mat-tab>
+
+  <mat-tab label="Health Report">
+    <app-health-report></app-health-report>
+  </mat-tab>
+
+  <mat-tab label="Map">
+
+  </mat-tab>
+
+</mat-tab-group>

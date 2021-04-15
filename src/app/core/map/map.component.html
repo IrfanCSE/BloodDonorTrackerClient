@@ -1,10 +1,40 @@
-<agm-map style="height: 300px" [zoom]="15" [latitude]="latitude" [longitude]="longitude">
-  <agm-marker [latitude]="latitude" [longitude]="longitude" [iconUrl]='"assets/BloodGroup/blood-type-a.jpg"'>
-    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
-      <ng-template>
-        <!-- <img src="../../../assets/BloodGroup/blood-type-a.jpg"> -->
-        My first Snazzy Info Window!
-      </ng-template>
-    </agm-snazzy-info-window>
-  </agm-marker>
-</agm-map>
+<ng-container *ngIf="!multiple">
+  <agm-map style="height: 300px" [zoom]="15" [latitude]="latitude" [longitude]="longitude">
+    <agm-marker [latitude]="latitude" [longitude]="longitude">
+      <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+        <ng-template>
+          <!-- <img src="../../../assets/BloodGroup/blood-type-a.jpg"> -->
+          My first Snazzy Info Window!
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-map>
+</ng-container>
+
+<ng-container *ngIf="multiple">
+  <agm-map style="height: 500px" [zoom]="15" [latitude]="latitude" [longitude]="longitude">
+    <agm-marker *ngFor="let item of locations" [latitude]="item.latitude" [longitude]="item.longitude">
+      <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
+        <ng-template class="row">
+
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>A+ Blood</mat-card-title>
+              <mat-card-subtitle>Mr. Irfan Khan</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>01862409405</p>
+              <p>
+                Hillview Housing Socity, Sholosohor, Chittagong
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>Make Request</button>
+            </mat-card-actions>
+          </mat-card>
+
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-map>
+</ng-container>

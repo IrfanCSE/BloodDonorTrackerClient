@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '../../core/models/location';
 
 @Component({
   selector: 'app-map',
@@ -8,6 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MapComponent implements OnInit {
   @Input() latitude: number;
   @Input() longitude: number;
+  @Input() multiple: boolean = false;
+  @Input() locations: Location[] = [];
   type = 'satellite';
 
   constructor() {}

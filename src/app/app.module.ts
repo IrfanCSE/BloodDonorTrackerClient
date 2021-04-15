@@ -22,6 +22,8 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './core/map/map.component';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { HealthReportComponent } from './donor/health-report/health-report.component';
+import { BloodComponent } from './blood/blood.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { HealthReportComponent } from './donor/health-report/health-report.compo
     EditDonorComponent,
     MapComponent,
     HealthReportComponent,
+    BloodComponent,
   ],
   imports: [
     BrowserModule,

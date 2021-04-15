@@ -6,7 +6,6 @@ import { AccountService } from '../account/account.service';
 import { BloodService } from '../blood/blood.service';
 import { DonorTable } from '../core/models/donorTable';
 import { Location } from '../core/models/location';
-import { SizeOfPage } from '../core/models/sizeOfPage.enum';
 import { UpdateDonor } from '../core/models/updateDonor';
 
 @Component({
@@ -23,7 +22,13 @@ export class BloodComponent implements OnInit {
   locations: Location[];
 
   dataSource: MatTableDataSource<DonorTable>;
-  displayedColumns: string[] = ['name', 'bloodGroup', 'address', 'distance'];
+  displayedColumns: string[] = [
+    'name',
+    'bloodGroup',
+    'address',
+    'distance',
+    'action',
+  ];
 
   constructor(
     private account: AccountService,
@@ -50,10 +55,12 @@ export class BloodComponent implements OnInit {
       .subscribe((res: any) => {
         this.dataSource = new MatTableDataSource(res.data);
 
-        this.locations = res.data.map((x: any) => ({
-          latitude: x.latitude,
-          longitude: x.longitude,
-        }));
+        this.locations = res.data;
+
+        // .map((x: any) => ({
+        //   latitude: x.latitude,
+        //   longitude: x.longitude,
+        // }))
 
         // this.locations.push(res.data);
         console.log('this.locations');
@@ -71,5 +78,10 @@ export class BloodComponent implements OnInit {
         this.router.navigateByUrl('donorUpdate');
       }
     );
+  };
+
+  makeRequest = (userIdFk: string) => {
+    console.log('makeRequest');
+    console.log(userIdFk);
   };
 }

@@ -39,6 +39,11 @@
           <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.distance  }} </td>
         </ng-container>
 
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row" [style.color]="row.color"> <button mat-button (click)="makeRequest(row.userIdFk)">Make Request</button> </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
@@ -55,7 +60,8 @@
 
   <mat-tab label="Map">
 
-    <app-map [multiple]='true' [locations]='locations' [longitude]="donor.longitude" [latitude]="donor.latitude"></app-map>
+    <app-map [multiple]='true' [locations]='locations' [longitude]="donor.longitude" [latitude]="donor.latitude">
+    </app-map>
 
   </mat-tab>
 

@@ -4,5 +4,6 @@ export interface DonorTable {
   bloodGroup: string;
   address: string;
   distance: number;
+  userIdFk: string;
   // action: any;
 }

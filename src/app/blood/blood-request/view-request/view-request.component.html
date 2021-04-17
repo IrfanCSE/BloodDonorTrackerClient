@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="fa fa-heartbeat"></div>
+    <mat-card-title>Blood Request</mat-card-title>
+    <!-- <mat-card-subtitle>summery</mat-card-subtitle> -->
+  </mat-card-header>
+  <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu"> -->
+  <mat-card-content>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Seeker</mat-label>
+            <input matInput disabled value="{{data.requestDonorName}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Required Blood Group</mat-label>
+            <input matInput disabled value="{{data.bloodGroupName}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Donor</mat-label>
+            <input matInput disabled
+              value="{{data.responsedDonorName==null?'No One Responsed Yet!':data.responsedDonorName}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput disabled value="{{data.donationDate|date}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Time</mat-label>
+            <input matInput disabled value="{{data.time|date:'shortTime'}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Condition</mat-label>
+            <input matInput disabled value="{{data.condition}}">
+          </mat-form-field>
+        </td>
+        <!-- <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput disabled value="{{data.address'}}">
+          </mat-form-field>
+        </td> -->
+      </tr>
+    </table>
+  </mat-card-content>
+  <!-- <mat-card-actions>
+    <button mat-button>Location Update</button>
+    <button mat-button><a routerLink='/donorUpdate'>Update Information</a></button>
+  </mat-card-actions> -->
+
+  <mat-card-footer *ngIf="latitude!==0 && longitude!==0">
+    <app-map [longitude]='longitude' [latitude]='latitude'></app-map>
+  </mat-card-footer>
+</mat-card>

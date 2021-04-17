@@ -23,6 +23,8 @@ import { MapComponent } from './core/map/map.component';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { HealthReportComponent } from './donor/health-report/health-report.component';
 import { BloodComponent } from './blood/blood.component';
+import { BloodRequestComponent } from './blood/blood-request/blood-request.component';
+import { ViewRequestComponent } from './blood/blood-request/view-request/view-request.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { BloodComponent } from './blood/blood.component';
     MapComponent,
     HealthReportComponent,
     BloodComponent,
+    BloodRequestComponent,
+    ViewRequestComponent,
   ],
   imports: [
     BrowserModule,

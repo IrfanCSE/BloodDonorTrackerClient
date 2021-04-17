@@ -11,6 +11,8 @@ import { AccountService } from 'src/app/account/account.service';
 export class NavComponent implements OnInit {
   user$: Observable<User> = new Observable<User>();
 
+  collapse: boolean=true;
+
   constructor(private service: AccountService) {}
 
   ngOnInit() {

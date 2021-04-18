@@ -1,3 +1,23 @@
-a{
+a {
   color: black;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline-offset: 0;
+  }
+}
+
+img {
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  &:focus {
+    box-shadow: none;
+  }
 }

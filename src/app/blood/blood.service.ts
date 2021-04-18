@@ -51,18 +51,19 @@ export class BloodService {
 
   getBloodRequestById = (requestId: number) => {
     return this.http
-      .get<GetBloodRequest>(`${this.baseUrl}Blood/GetBloodRequstById?BloodRequstId=${requestId}
-    `);
+      .get<GetBloodRequest>(`${this.baseUrl}Blood/GetBloodRequstById?BloodRequstId=${requestId}`);
   };
 
   postBloodRequest = (request: PostBloodRequest) => {
+    console.log(request);
     return this.http.post(`${this.baseUrl}Blood/PostBloodRequest`, request);
   };
 
   RemoveBloodRequest = (requestId: number) => {
-    return this.http
-      .get(`${this.baseUrl}Blood/RemoveBloodRequest?BloodRequest=${requestId}
-    `);
+    return this.http.patch(
+      `${this.baseUrl}Blood/RemoveBloodRequest?BloodRequest=${requestId}`,
+      null
+    );
   };
 
   ResponsedOnBloodRequest = (BloodRequestId: number, donorId: number) => {

@@ -11,4 +11,8 @@ export interface GetBloodRequest {
   condition: string;
   isResponsed: boolean;
   isActive: boolean;
+  address: string;
+  longitude: number;
+  latitude: number;
+  distance: number;
 }

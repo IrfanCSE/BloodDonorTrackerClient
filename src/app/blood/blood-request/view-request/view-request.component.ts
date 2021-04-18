@@ -9,12 +9,13 @@ import { GetBloodRequest } from 'src/app/core/models/getBloodRequest';
   styleUrls: ['./view-request.component.scss'],
 })
 export class ViewRequestComponent implements OnInit {
-  longitude: number = 91.8224896;
-  latitude: number = 22.357606399999998;
+  longitude: number = 0;
+  latitude: number = 0;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: GetBloodRequest) {}
 
   ngOnInit() {
-    console.log(this.data);
+    this.longitude = this.data.longitude;
+    this.latitude = this.data.latitude;
   }
 }

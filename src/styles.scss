@@ -20,26 +20,3 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
-
-a {
-  &:hover {
-    text-decoration: none;
-  }
-
-  &:focus {
-    outline-offset: 0;
-  }
-}
-
-img {
-  &:focus {
-    outline: none;
-  }
-}
-
-.btn {
-  &:focus {
-    box-shadow: none;
-  }
-}

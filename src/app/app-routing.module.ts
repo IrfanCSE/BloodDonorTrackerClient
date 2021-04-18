@@ -4,6 +4,9 @@ import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './account/register/register.component';
 import { BloodRequestComponent } from './blood/blood-request/blood-request.component';
 import { BloodComponent } from './blood/blood.component';
+import { CreateRequestComponent } from './blood/create-request/create-request.component';
+import { MyRequestComponent } from './blood/my-request/my-request.component';
+import { MyResponseComponent } from './blood/my-response/my-response.component';
 import { HomeComponent } from './core/home/home.component';
 import { AuthGuard } from './core/intercepter/guards/auth.guard';
 import { DonorComponent } from './donor/donor.component';
@@ -17,6 +20,9 @@ const routes: Routes = [
   { path: 'blood', component: BloodComponent },
   { path: 'donor', component: DonorComponent, canActivate: [AuthGuard] },
   { path: 'bloodrequest', component: BloodRequestComponent },
+  { path: 'my_card', component: MyRequestComponent },
+  { path: 'my_card_2', component: MyResponseComponent },
+  { path: 'create_request/:id', component: CreateRequestComponent },
   {
     path: 'donorUpdate',
     component: EditDonorComponent,

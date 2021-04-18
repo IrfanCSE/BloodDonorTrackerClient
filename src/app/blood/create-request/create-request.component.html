@@ -1,0 +1,40 @@
+<mat-form-field>
+  <mat-label>Make a Request</mat-label>
+  <input matInput disabled value="REQUEST INFORMATION">
+</mat-form-field>
+
+<div class="d-flex justify-content-around">
+  <form [formGroup]="requestForm" (ngSubmit)='OnSubmit()'>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Blood Group</mat-label>
+      <mat-select formControlName="bloodGroupFK">
+        <mat-option *ngFor="let item of bloodGroups" [value]="item?.value">{{item?.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Donation Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="donationDate" readonly>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <ngb-timepicker formControlName="time" [meridian]='meridian'></ngb-timepicker>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Condition</mat-label>
+      <textarea formControlName="condition" matInput placeholder="not good"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Address</mat-label>
+      <textarea formControlName="address" matInput placeholder="chittagong, bangladesh"></textarea>
+    </mat-form-field>
+    <br>
+    <button type="button" mat-button (click)="setLocation()">Set Location On Map</button>
+    <button type="submit" mat-button>Post</button>
+  </form>
+</div>

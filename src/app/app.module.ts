@@ -25,6 +25,10 @@ import { HealthReportComponent } from './donor/health-report/health-report.compo
 import { BloodComponent } from './blood/blood.component';
 import { BloodRequestComponent } from './blood/blood-request/blood-request.component';
 import { ViewRequestComponent } from './blood/blood-request/view-request/view-request.component';
+import { MyResponseComponent } from './blood/my-response/my-response.component';
+import { MyRequestComponent } from './blood/my-request/my-request.component';
+import { CreateRequestComponent } from './blood/create-request/create-request.component';
+import { PointMapComponent } from './core/map/point-map/point-map.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { ViewRequestComponent } from './blood/blood-request/view-request/view-re
     BloodComponent,
     BloodRequestComponent,
     ViewRequestComponent,
+    MyRequestComponent,
+    MyResponseComponent,
+    CreateRequestComponent,
+    PointMapComponent,
   ],
   imports: [
     BrowserModule,

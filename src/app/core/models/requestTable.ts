@@ -6,4 +6,6 @@ export interface RequestTable {
   time: string;
   address: string;
   isResponsed: boolean;
+  distance: number;
+  isActive: boolean;
 }

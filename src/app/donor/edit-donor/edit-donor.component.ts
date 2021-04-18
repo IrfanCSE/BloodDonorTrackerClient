@@ -96,5 +96,5 @@ export class EditDonorComponent implements OnInit {
     });
   };
 
-  OnHRSubmit = () => {};
+  // OnHRSubmit = () => {};
 }

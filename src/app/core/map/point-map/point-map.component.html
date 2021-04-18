@@ -1,0 +1,6 @@
+  <agm-map style="height: 600px; width: 600px;" [zoom]="15" [latitude]="data.latitude" [longitude]="data.longitude"
+  (mapReady)="mapReadyHandler($event)">
+    <agm-marker [latitude]="data.latitude" [longitude]="data.longitude">
+    </agm-marker>
+  </agm-map>
+  <button mat-button (click)='onSave()'>Set Map</button>

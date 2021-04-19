@@ -60,7 +60,7 @@ export class MyRequestComponent implements OnInit {
 
   public getServerData(event: any) {
     this.service
-      .getBloodRequestsByUser(this.userId, event.pageIndex, this.pageSize)
+      .getBloodRequestsByUser(this.userId, event.pageIndex, event.pageSize)
       .subscribe((res: any) => {
         this.dataSource = new MatTableDataSource(res.data);
 
@@ -79,6 +79,7 @@ export class MyRequestComponent implements OnInit {
 
   responseView = (requestId: number) => {
     this.service.getBloodRequestById(requestId).subscribe((res) => {
+      res.forMyRequest = true;
       this._bottomSheet.open(ViewRequestComponent, { data: res });
     });
   };
@@ -92,11 +93,15 @@ export class MyRequestComponent implements OnInit {
         this.pageCount = res.total;
         this.pageNumber = res.pageNumber;
         this.pageSize = res.pageSize;
+
+        console.log("this.pageSize first");
+        console.log(this.pageSize);
       });
   };
 
   removeRequest = (requestId: number) => {
     this.service.RemoveBloodRequest(requestId).subscribe((res: any) => {
+      this.pageNumber -= 1;
       this.getRequest();
       this.notify.success(res?.message);
     });

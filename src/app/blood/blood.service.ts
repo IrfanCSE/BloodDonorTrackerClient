@@ -50,8 +50,9 @@ export class BloodService {
   };
 
   getBloodRequestById = (requestId: number) => {
-    return this.http
-      .get<GetBloodRequest>(`${this.baseUrl}Blood/GetBloodRequstById?BloodRequstId=${requestId}`);
+    return this.http.get<GetBloodRequest>(
+      `${this.baseUrl}Blood/GetBloodRequstById?BloodRequstId=${requestId}`
+    );
   };
 
   postBloodRequest = (request: PostBloodRequest) => {
@@ -74,14 +75,17 @@ export class BloodService {
   };
 
   CancelResponsedOnBloodRequest = (BloodRequestId: number, donorId: number) => {
-    return this.http
-      .get(`${this.baseUrl}Blood/CancelResponseOnBloodRequest?BloodRequestIdPk=${BloodRequestId}&ResponseDonorId=${donorId}
-    `);
+    return this.http.patch(
+      `${this.baseUrl}Blood/CancelResponseOnBloodRequest?BloodRequestIdPk=${BloodRequestId}&ResponseDonorId=${donorId}
+    `,
+      null
+    );
   };
 
   RemoveResponsedOnBloodRequest = (requestId: number) => {
-    return this.http
-      .get(`${this.baseUrl}Blood/RemoveResponseOnBloodRequest?BloodRequestIdPk=${requestId}
-    `);
+    return this.http.patch(
+      `${this.baseUrl}Blood/RemoveResponseOnBloodRequest?BloodRequestIdPk=${requestId}`,
+      null
+    );
   };
 }

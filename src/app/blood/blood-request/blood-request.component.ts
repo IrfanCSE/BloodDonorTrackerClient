@@ -94,12 +94,16 @@ export class BloodRequestComponent implements OnInit {
 
   responseView = (requestId: number) => {
     this.service.getBloodRequestById(requestId).subscribe((res) => {
-      // this.request = res;
-      this._bottomSheet.open(ViewRequestComponent, { data: res });
+      res.forMyRequest = false;
+      res.cancelDonor = this.donorId;
 
-      // this._bottomSheet.afterAllClosed.subscribe((result) => {
-      //   console.log(`Dialog result: ${result}`);
-      // });
+      this._bottomSheet
+        .open(ViewRequestComponent, { data: res })
+        .afterClosed()
+        .subscribe(() => {
+          this.pageNumber -= 1;
+          this.getAvailableBloodRequest();
+        });
     });
   };
 

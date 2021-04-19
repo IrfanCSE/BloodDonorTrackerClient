@@ -57,7 +57,7 @@ export class MyResponseComponent implements OnInit {
 
   public getServerData(event: any) {
     this.service
-      .getBloodResponsedByUser(this.userId, event.pageIndex, this.pageSize)
+      .getBloodResponsedByUser(this.userId, event.pageIndex, event.pageSize)
       .subscribe((res: any) => {
         this.dataSource = new MatTableDataSource(res.data);
 
@@ -76,7 +76,15 @@ export class MyResponseComponent implements OnInit {
 
   responseView = (requestId: number) => {
     this.service.getBloodRequestById(requestId).subscribe((res) => {
-      this._bottomSheet.open(ViewRequestComponent, { data: res });
+      res.forMyRequest = false;
+      res.cancelDonor = this.donorId;
+      this._bottomSheet
+        .open(ViewRequestComponent, { data: res })
+        .afterClosed()
+        .subscribe(() => {
+          this.pageNumber -= 1;
+          this.getResponse();
+        });
     });
   };
 

@@ -15,4 +15,7 @@ export interface GetBloodRequest {
   longitude: number;
   latitude: number;
   distance: number;
+
+  forMyRequest: boolean;
+  cancelDonor: number;
 }

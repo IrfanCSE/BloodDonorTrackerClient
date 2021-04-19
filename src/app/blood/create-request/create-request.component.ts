@@ -85,6 +85,9 @@ export class CreateRequestComponent implements OnInit {
       longitude: this.request?.longitude,
       latitude: this.request?.latitude,
     });
+
+    this.location.latitude = this.request?.latitude;
+    this.location.longitude = this.request?.longitude;
   };
 
   getCurrentUser = () => {
@@ -119,7 +122,8 @@ export class CreateRequestComponent implements OnInit {
   };
 
   setLocation = () => {
-    this.setCurrentLocation();
+    if (this.location.latitude === 0) this.setCurrentLocation();
+
     this.dialog
       .open(PointMapComponent, { data: this.location })
       .afterClosed()
@@ -139,12 +143,5 @@ export class CreateRequestComponent implements OnInit {
 
     data.longitude = this.location.longitude;
     data.latitude = this.location.latitude;
-
-    this.service
-      .postBloodRequest(this.requestForm.value)
-      .subscribe((res: any) => {
-        this.notify.success(res?.message);
-        this.router.navigateByUrl('/my_card');
-      });
   };
 }

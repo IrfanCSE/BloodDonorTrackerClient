@@ -54,10 +54,15 @@
       </tr>
     </table>
   </mat-card-content>
-  <!-- <mat-card-actions>
-    <button mat-button>Location Update</button>
-    <button mat-button><a routerLink='/donorUpdate'>Update Information</a></button>
-  </mat-card-actions> -->
+
+  <mat-card-actions *ngIf="data.responsedDonorFk && data.isActive===true && data.forMyRequest==true">
+    <button mat-button (click)='onRemoveDonor()'>Remove Donor</button>
+  </mat-card-actions>
+
+  <mat-card-actions
+    *ngIf="data.responsedDonorFk && data.isActive===true && data.forMyRequest==false && data.cancelDonor==data.responsedDonorFk">
+    <button mat-button (click)='onCancelResponse()'>Cancel Response</button>
+  </mat-card-actions>
 
   <mat-card-footer *ngIf="latitude!==0 && longitude!==0">
     <app-map [longitude]='longitude' [latitude]='latitude'></app-map>

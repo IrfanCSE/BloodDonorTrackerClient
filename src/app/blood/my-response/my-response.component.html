@@ -71,7 +71,9 @@
     </tr> -->
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10,20,50]"></mat-paginator>
+  <mat-paginator (page)="pageEvent = getServerData($event)" [pageSize]='pageSize' [pageIndex]='0' [length]='pageCount'
+    [pageSizeOptions]="[10,20,50]">
+  </mat-paginator>
 </div>
 
 <!-- </mat-tab> -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/account.service';
@@ -19,6 +20,8 @@ export class MyResponseComponent implements OnInit {
   donorId: number;
   pageNumber: number = 0;
   pageSize: number = 0;
+  pageCount: number = 0;
+  pageEvent: PageEvent;
   request: GetBloodRequest;
 
   dataSource: MatTableDataSource<RequestTable>;
@@ -52,6 +55,19 @@ export class MyResponseComponent implements OnInit {
     });
   };
 
+  public getServerData(event: any) {
+    this.service
+      .getBloodResponsedByUser(this.userId, event.pageIndex, this.pageSize)
+      .subscribe((res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+
+        this.pageCount = res.total;
+        this.pageNumber = res.pageNumber;
+        this.pageSize = res.pageSize;
+      });
+    return event;
+  }
+
   getCurrentDonor = () => {
     this.donorService
       .getDonor(this.userId)
@@ -67,8 +83,12 @@ export class MyResponseComponent implements OnInit {
   getResponse = () => {
     this.service
       .getBloodResponsedByUser(this.userId, this.pageNumber, this.pageSize)
-      .subscribe(
-        (res: any) => (this.dataSource = new MatTableDataSource(res.data))
-      );
+      .subscribe((res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+
+        this.pageCount = res.total;
+        this.pageNumber = res.pageNumber;
+        this.pageSize = res.pageSize;
+      });
   };
 }

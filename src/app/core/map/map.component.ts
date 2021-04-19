@@ -11,10 +11,16 @@ export class MapComponent implements OnInit {
   @Input() latitude: number;
   @Input() longitude: number;
   @Input() multiple: boolean = false;
-  @Input() locations: Location[] = [];
+  @Input() locations: any;
   type = 'satellite';
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('this. from map');
+    console.log(this.locations);
+    console.log('this.latitude long');
+    console.log(this.latitude);
+    console.log(this.longitude);
+  }
 }

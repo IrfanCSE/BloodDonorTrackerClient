@@ -142,6 +142,9 @@ export class CreateRequestComponent implements OnInit {
 
     this.service
       .postBloodRequest(this.requestForm.value)
-      .subscribe((res: any) => this.notify.success(res?.message));
+      .subscribe((res: any) => {
+        this.notify.success(res?.message);
+        this.router.navigateByUrl('/my_card');
+      });
   };
 }

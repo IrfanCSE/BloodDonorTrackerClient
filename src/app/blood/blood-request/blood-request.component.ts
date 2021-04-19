@@ -10,6 +10,7 @@ import { BloodService } from '../blood.service';
 // import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewRequestComponent } from './view-request/view-request.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-blood-request',
@@ -19,8 +20,10 @@ import { ViewRequestComponent } from './view-request/view-request.component';
 export class BloodRequestComponent implements OnInit {
   userId: string;
   donorId: number;
-  pageNumber: number = 1;
-  pageSize: number = 10;
+  pageNumber: number = 0;
+  pageSize: number = 0;
+  pageCount: number = 0;
+  pageEvent: PageEvent;
   // requests: GetBloodRequest[];
   // request: GetBloodRequest;
 
@@ -45,6 +48,7 @@ export class BloodRequestComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser();
+    this.getServerData(null);
   }
 
   currentUser = () => {
@@ -54,6 +58,20 @@ export class BloodRequestComponent implements OnInit {
       this.getCurrentDonor();
     });
   };
+
+  public getServerData(event: any) {
+    this.service
+      .getBloddRequests(this.userId, event.pageIndex, event.pageSize)
+      .subscribe((res: any) => {
+        // this.requests = res.data;
+        this.dataSource = new MatTableDataSource(res.data);
+
+        this.pageCount = res.total;
+        this.pageNumber = res.pageNumber;
+        this.pageSize = res.pageSize;
+      });
+    return event;
+  }
 
   getCurrentDonor = () => {
     this.donorService
@@ -67,6 +85,10 @@ export class BloodRequestComponent implements OnInit {
       .subscribe((res: any) => {
         // this.requests = res.data;
         this.dataSource = new MatTableDataSource(res.data);
+
+        this.pageCount = res.total;
+        this.pageNumber = res.pageNumber;
+        this.pageSize = res.pageSize;
       });
   };
 
@@ -86,6 +108,8 @@ export class BloodRequestComponent implements OnInit {
       .ResponsedOnBloodRequest(requestId, this.donorId)
       .subscribe((res: any) => {
         this.notify.success(res?.message);
+
+        this.pageNumber -= 1;
         this.getAvailableBloodRequest();
         // this.router.navigateByUrl('/your_response');
       });

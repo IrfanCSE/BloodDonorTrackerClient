@@ -41,7 +41,8 @@
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-          <td mat-cell *matCellDef="let row" [style.color]="row.color"> <button mat-button (click)="makeRequest(row.userIdFk)">Make Request</button> </td>
+          <td mat-cell *matCellDef="let row" [style.color]="row.color"> <button mat-button
+              (click)="makeRequest(row.userIdFk)">Make Request</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -53,7 +54,9 @@
     </tr> -->
       </table>
 
-      <mat-paginator [pageSizeOptions]="[10,20,50]"></mat-paginator>
+      <mat-paginator (page)="pageEvent = getServerData($event)" [pageSize]='pageSize' [pageIndex]='0'
+        [length]='pageCount' [pageSizeOptions]="[10,20,50]">
+      </mat-paginator>
     </div>
 
   </mat-tab>

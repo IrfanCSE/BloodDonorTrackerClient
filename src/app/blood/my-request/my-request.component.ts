@@ -10,6 +10,7 @@ import { DonorService } from 'src/app/donor/donor.service';
 import { BloodService } from '../blood.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewRequestComponent } from '../blood-request/view-request/view-request.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-my-request',
@@ -21,6 +22,8 @@ export class MyRequestComponent implements OnInit {
   donorId: number;
   pageNumber: number = 0;
   pageSize: number = 0;
+  pageCount: number = 0;
+  pageEvent: PageEvent;
   request: GetBloodRequest;
 
   dataSource: MatTableDataSource<RequestTable>;
@@ -44,6 +47,7 @@ export class MyRequestComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser();
+    this.getServerData(null);
   }
 
   currentUser = () => {
@@ -53,6 +57,19 @@ export class MyRequestComponent implements OnInit {
       this.getRequest();
     });
   };
+
+  public getServerData(event: any) {
+    this.service
+      .getBloodRequestsByUser(this.userId, event.pageIndex, this.pageSize)
+      .subscribe((res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+
+        this.pageCount = res.total;
+        this.pageNumber = res.pageNumber;
+        this.pageSize = res.pageSize;
+      });
+    return event;
+  }
 
   getCurrentDonor = () => {
     this.donorService
@@ -69,9 +86,13 @@ export class MyRequestComponent implements OnInit {
   getRequest = () => {
     this.service
       .getBloodRequestsByUser(this.userId, this.pageNumber, this.pageSize)
-      .subscribe(
-        (res: any) => (this.dataSource = new MatTableDataSource(res.data))
-      );
+      .subscribe((res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+
+        this.pageCount = res.total;
+        this.pageNumber = res.pageNumber;
+        this.pageSize = res.pageSize;
+      });
   };
 
   removeRequest = (requestId: number) => {

@@ -9,6 +9,7 @@ import { MyRequestComponent } from './blood/my-request/my-request.component';
 import { MyResponseComponent } from './blood/my-response/my-response.component';
 import { HomeComponent } from './core/home/home.component';
 import { AuthGuard } from './core/intercepter/guards/auth.guard';
+import { DonorRequestComponent } from './donor-request/donor-request.component';
 import { DonorComponent } from './donor/donor.component';
 import { EditDonorComponent } from './donor/edit-donor/edit-donor.component';
 import { HealthReportComponent } from './donor/health-report/health-report.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'my_card', component: MyRequestComponent },
   { path: 'my_card_2', component: MyResponseComponent },
   { path: 'create_request/:id', component: CreateRequestComponent },
+  { path: 'donor_request', component: DonorRequestComponent },
   {
     path: 'donorUpdate',
     component: EditDonorComponent,

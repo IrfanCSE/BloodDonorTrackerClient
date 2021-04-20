@@ -29,6 +29,8 @@ import { MyResponseComponent } from './blood/my-response/my-response.component';
 import { MyRequestComponent } from './blood/my-request/my-request.component';
 import { CreateRequestComponent } from './blood/create-request/create-request.component';
 import { PointMapComponent } from './core/map/point-map/point-map.component';
+import { DonorRequestComponent } from './donor-request/donor-request.component';
+import { ViewDonorRequestComponent } from './donor-request/view-donor-request/view-donor-request.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { PointMapComponent } from './core/map/point-map/point-map.component';
     MyResponseComponent,
     CreateRequestComponent,
     PointMapComponent,
+    DonorRequestComponent,
+    ViewDonorRequestComponent,
   ],
   imports: [
     BrowserModule,

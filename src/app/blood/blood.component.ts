@@ -8,6 +8,8 @@ import { DonorTable } from '../core/models/donorTable';
 import { Location } from '../core/models/location';
 import { UpdateDonor } from '../core/models/updateDonor';
 import { PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { AssignBloodRequestComponent } from './assign-blood-request/assign-blood-request.component';
 
 @Component({
   selector: 'app-blood',
@@ -25,19 +27,14 @@ export class BloodComponent implements OnInit {
 
   pageEvent: PageEvent;
   dataSource: MatTableDataSource<DonorTable>;
-  displayedColumns: string[] = [
-    'name',
-    'bloodGroup',
-    'address',
-    'distance',
-    'action',
-  ];
+  displayedColumns: string[] = ['name', 'bloodGroup', 'address', 'action'];
 
   constructor(
     private account: AccountService,
     private service: BloodService,
     private donorService: DonorService,
-    private router: Router
+    private router: Router,
+    private _bottomSheet: MatDialog
   ) {}
 
   ngOnInit() {
@@ -101,8 +98,9 @@ export class BloodComponent implements OnInit {
     console.log(this.pageNumber);
   };
 
-  makeRequest = (userIdFk: string) => {
-    console.log('makeRequest');
-    console.log(userIdFk);
+  makeRequest = (donorId: number) => {
+    this._bottomSheet.open(AssignBloodRequestComponent, {
+      data: { seekerId: this.donor.donorIdPk, donorId: donorId },
+    });
   };
 }

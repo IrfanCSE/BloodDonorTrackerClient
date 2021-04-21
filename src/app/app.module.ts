@@ -31,6 +31,7 @@ import { CreateRequestComponent } from './blood/create-request/create-request.co
 import { PointMapComponent } from './core/map/point-map/point-map.component';
 import { DonorRequestComponent } from './donor-request/donor-request.component';
 import { ViewDonorRequestComponent } from './donor-request/view-donor-request/view-donor-request.component';
+import { AssignBloodRequestComponent } from './blood/assign-blood-request/assign-blood-request.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ViewDonorRequestComponent } from './donor-request/view-donor-request/vi
     PointMapComponent,
     DonorRequestComponent,
     ViewDonorRequestComponent,
+    AssignBloodRequestComponent,
   ],
   imports: [
     BrowserModule,

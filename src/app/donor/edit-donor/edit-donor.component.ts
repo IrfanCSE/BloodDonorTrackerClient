@@ -19,6 +19,9 @@ export class EditDonorComponent implements OnInit {
   // donorId: number;
   donor: UpdateDonor;
   location = { longitude: 0, latitude: 0 };
+  newForm: boolean = true;
+  isMapAuto: boolean = true;
+
   constructor(
     private account: AccountService,
     private service: DonorService,
@@ -29,7 +32,7 @@ export class EditDonorComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
-    this.setCurrentLocation();
+    // this.setCurrentLocation();
   }
 
   donorForm = this.fb.group({
@@ -46,6 +49,11 @@ export class EditDonorComponent implements OnInit {
       phone: this.donor?.phone,
       address: this.donor?.address,
     });
+
+    this.location.latitude = this.donor?.latitude;
+    this.location.longitude = this.donor?.longitude;
+    this.newForm = false;
+    this.isMapAuto = this.donor?.isLocationUpdateAuto;
   };
 
   getCurrentUser = () => {
@@ -61,6 +69,8 @@ export class EditDonorComponent implements OnInit {
       this.donor = res;
       this.donor.userIdFk = userId;
       // this.donorId = res.donorIdPk;
+      console.log('this.donor');
+      console.log(this.donor);
       this.setDefaultValue();
     });
   };
@@ -71,6 +81,7 @@ export class EditDonorComponent implements OnInit {
         if (pos) {
           this.location.longitude = pos.coords.longitude;
           this.location.latitude = pos.coords.latitude;
+          this.updateLocation();
         }
       });
     }
@@ -89,12 +100,19 @@ export class EditDonorComponent implements OnInit {
   OnSubmit = () => {
     this.donor = this.donorForm.value;
     this.donor.userIdFk = this.userId;
+
+    console.log(this.isMapAuto);
+    if (this.isMapAuto) {
+      this.setCurrentLocation();
+    }
+
     this.service.updateDonor(this.donor).subscribe((res: any) => {
-      this.updateLocation();
+      if (this.newForm && this.isMapAuto) {
+        this.setCurrentLocation();
+      }
+
       this.notify.success(res?.message);
       this.router.navigateByUrl('/donor');
     });
   };
-
-  // OnHRSubmit = () => {};
 }

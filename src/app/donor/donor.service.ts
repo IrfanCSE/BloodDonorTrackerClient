@@ -46,6 +46,14 @@ export class DonorService {
     );
   };
 
+  updateMapMode = (donorId: number, status: boolean) => {
+    return this.http.put(
+      `${this.baseUrl}Donor/UpdateMapMode?DonorId=${donorId}&Status=${status}`,
+      null,
+      { headers: this.header }
+    );
+  };
+
   locationUpdate = (userId: string, longitude: number, latitude: number) => {
     return this.http.put(
       `${this.baseUrl}Donor/UpdateLocation?userId=${userId}&Longitude=${longitude}&Latitude=${latitude}`,

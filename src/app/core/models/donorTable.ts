@@ -1,5 +1,6 @@
 export interface DonorTable {
   // sl: number;
+  donorIdPk: number;
   name: string;
   bloodGroup: string;
   address: string;

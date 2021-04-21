@@ -1,0 +1,9 @@
+<form #frm [formGroup]='requestForm' (ngSubmit)='assignRequst()'>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Your Request</mat-label>
+    <mat-select formControlName="requestId">
+      <mat-option *ngFor="let item of bloodRequest" [value]='item.bloodRequestIdPk'>{{item.bloodGroupName.split("(",1)}}|{{item.donationDate|date}}|{{item.donationDate|date:'shortTime'}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button [disabled]="!requestForm.valid" class="btn btn-light" type="submit">Send Request</button>
+</form>

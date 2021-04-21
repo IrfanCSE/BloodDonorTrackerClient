@@ -29,6 +29,12 @@ export class BloodService {
     );
   };
 
+  getMyBloddRequests = (donorId: number) => {
+    return this.http.get<Array<GetBloodRequest>>(
+      `${this.baseUrl}Blood/GetMyBloodRequest?donorId=${donorId}`
+    );
+  };
+
   getBloodRequestsByUser = (
     userId: string,
     pageNumber: number,

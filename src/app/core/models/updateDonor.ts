@@ -7,4 +7,5 @@ export interface UpdateDonor {
   donorIdPk: number;
   longitude: number;
   latitude: number;
+  isLocationUpdateAuto: boolean;
 }

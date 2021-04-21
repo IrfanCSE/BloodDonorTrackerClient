@@ -34,15 +34,10 @@
           <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.address}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="distance">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
-          <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.distance  }} </td>
-        </ng-container>
-
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
           <td mat-cell *matCellDef="let row" [style.color]="row.color"> <button mat-button
-              (click)="makeRequest(row.userIdFk)">Make Request</button> </td>
+              (click)="makeRequest(row.donorIdPk)">Make Request</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

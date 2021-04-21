@@ -38,6 +38,10 @@
   <mat-card-actions>
     <!-- <button mat-button>Location Update</button> -->
     <button mat-button><a routerLink='/donorUpdate'>Update Information</a></button>
+    <button mat-button [disabled]='checked' (click)='clickUpdateMap()'><a>Update Location</a></button>
+    <button class="btn btn-outline-light float-right"(click)='onClickToggole()'>
+      <mat-slide-toggle [checked]='checked'>{{checked==true?'Auto':'Manual'}} : Map Update</mat-slide-toggle>
+    </button>
   </mat-card-actions>
 </mat-card>
 

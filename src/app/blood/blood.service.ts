@@ -19,19 +19,22 @@ export class BloodService {
 
   getDonors = (userId: string, pageNo: number, pageSize: number) => {
     return this.http.get<Pagination<GetBloodDonors>>(
-      `${this.baseUrl}Blood/GetAvailableDonorLanding?userId=${userId}&pageNumber=${pageNo}&PageSize=${pageSize}`
+      `${this.baseUrl}Blood/GetAvailableDonorLanding?userId=${userId}&pageNumber=${pageNo}&PageSize=${pageSize}`,
+      { headers: this.header }
     );
   };
 
   getBloddRequests = (userId: string, pageNumber: number, pageSize: number) => {
     return this.http.get<Pagination<GetBloodRequest>>(
-      `${this.baseUrl}Blood/GetAvailableBloodReqeustLanding?userId=${userId}&pageNumber=${pageNumber}&PageSize=${pageSize}`
+      `${this.baseUrl}Blood/GetAvailableBloodReqeustLanding?userId=${userId}&pageNumber=${pageNumber}&PageSize=${pageSize}`,
+      { headers: this.header }
     );
   };
 
   getMyBloddRequests = (donorId: number) => {
     return this.http.get<Array<GetBloodRequest>>(
-      `${this.baseUrl}Blood/GetMyBloodRequest?donorId=${donorId}`
+      `${this.baseUrl}Blood/GetMyBloodRequest?donorId=${donorId}`,
+      { headers: this.header }
     );
   };
 
@@ -41,7 +44,8 @@ export class BloodService {
     pageSize: number
   ) => {
     return this.http.get<Pagination<GetBloodRequest>>(
-      `${this.baseUrl}Blood/GetBloodRequestByUserLanding?userId=${userId}&pageNumber=${pageNumber}&PageSize=${pageSize}`
+      `${this.baseUrl}Blood/GetBloodRequestByUserLanding?userId=${userId}&pageNumber=${pageNumber}&PageSize=${pageSize}`,
+      { headers: this.header }
     );
   };
 
@@ -51,32 +55,38 @@ export class BloodService {
     pageSize: number
   ) => {
     return this.http.get<Pagination<GetBloodRequest>>(
-      `${this.baseUrl}Blood/GetBloodResponsedByUserLanding?userId=${userId}&pageNumber=${pageNumber}&PageSize=${pageSize}`
+      `${this.baseUrl}Blood/GetBloodResponsedByUserLanding?userId=${userId}&pageNumber=${pageNumber}&PageSize=${pageSize}`,
+      { headers: this.header }
     );
   };
 
   getBloodRequestById = (requestId: number) => {
     return this.http.get<GetBloodRequest>(
-      `${this.baseUrl}Blood/GetBloodRequstById?BloodRequstId=${requestId}`
+      `${this.baseUrl}Blood/GetBloodRequstById?BloodRequstId=${requestId}`,
+      { headers: this.header }
     );
   };
 
   postBloodRequest = (request: PostBloodRequest) => {
     console.log(request);
-    return this.http.post(`${this.baseUrl}Blood/PostBloodRequest`, request);
+    return this.http.post(`${this.baseUrl}Blood/PostBloodRequest`, request, {
+      headers: this.header,
+    });
   };
 
   RemoveBloodRequest = (requestId: number) => {
     return this.http.patch(
       `${this.baseUrl}Blood/RemoveBloodRequest?BloodRequest=${requestId}`,
-      null
+      null,
+      { headers: this.header }
     );
   };
 
   ResponsedOnBloodRequest = (BloodRequestId: number, donorId: number) => {
     return this.http.patch(
       `${this.baseUrl}Blood/ResponseOnBloodRequest?BloodRequestIdPk=${BloodRequestId}&ResponseDonorId=${donorId}`,
-      null
+      null,
+      { headers: this.header }
     );
   };
 
@@ -84,14 +94,16 @@ export class BloodService {
     return this.http.patch(
       `${this.baseUrl}Blood/CancelResponseOnBloodRequest?BloodRequestIdPk=${BloodRequestId}&ResponseDonorId=${donorId}
     `,
-      null
+      null,
+      { headers: this.header }
     );
   };
 
   RemoveResponsedOnBloodRequest = (requestId: number) => {
     return this.http.patch(
       `${this.baseUrl}Blood/RemoveResponseOnBloodRequest?BloodRequestIdPk=${requestId}`,
-      null
+      null,
+      { headers: this.header }
     );
   };
 }

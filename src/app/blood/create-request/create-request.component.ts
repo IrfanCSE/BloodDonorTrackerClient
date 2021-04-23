@@ -133,7 +133,9 @@ export class CreateRequestComponent implements OnInit {
       });
   };
 
-  updateRequest = () => {};
+  onClickBack = () => {
+    this.router.navigateByUrl('/my_card')
+  };
 
   OnSubmit = () => {
     let data = this.requestForm.value;
@@ -143,5 +145,10 @@ export class CreateRequestComponent implements OnInit {
 
     data.longitude = this.location.longitude;
     data.latitude = this.location.latitude;
+
+    this.service.postBloodRequest(data).subscribe((res: any) => {
+      this.notify.success(res?.message);
+      this.router.navigateByUrl('/my_card');
+    });
   };
 }

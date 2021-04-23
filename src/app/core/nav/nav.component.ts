@@ -2,6 +2,7 @@ import { User } from './../models/user';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/account/account.service';
+import { DonorRequestService } from 'src/app/donor-request/donor-request.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,13 +11,19 @@ import { AccountService } from 'src/app/account/account.service';
 })
 export class NavComponent implements OnInit {
   user$: Observable<User> = new Observable<User>();
+  donorId: number;
+  notificationCounter$: Observable<number> = new Observable<number>();
 
-  collapse: boolean=true;
+  collapse: boolean = true;
 
-  constructor(private service: AccountService) {}
+  constructor(
+    private service: AccountService,
+    private donorReq: DonorRequestService
+  ) {}
 
   ngOnInit() {
     this.user$ = this.service.currentUser$;
+    this.notificationCounter$ = this.donorReq.currentNotification$;
   }
 
   logout = () => {

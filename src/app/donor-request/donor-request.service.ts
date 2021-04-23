@@ -4,11 +4,16 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { GetDonorRequest } from '../core/models/getDonorRequest';
 import { PostDonorRequest } from '../core/models/postDonorRequest';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DonorRequestService {
+  currentNotificationSource = new BehaviorSubject<number>(1);
+  currentNotification$ = this.currentNotificationSource.asObservable();
+
   baseUrl = environment.baseUrl;
   header = this.account.authHeader();
 
@@ -16,20 +21,23 @@ export class DonorRequestService {
 
   getDonorRequestForDonor = (donorId: number) => {
     return this.http.get<Array<GetDonorRequest>>(
-      `${this.baseUrl}DonorRequest/GetDonorRequests?DonorId=${donorId}`
+      `${this.baseUrl}DonorRequest/GetDonorRequests?DonorId=${donorId}`,
+      { headers: this.header }
     );
   };
 
   getDonorRequestById = (DonorRequestId: number) => {
     return this.http.get<GetDonorRequest>(
-      `${this.baseUrl}DonorRequest/GetDonorRequestById?DonorRequestId=${DonorRequestId}`
+      `${this.baseUrl}DonorRequest/GetDonorRequestById?DonorRequestId=${DonorRequestId}`,
+      { headers: this.header }
     );
   };
 
   postDonorRequest = (data: PostDonorRequest) => {
     return this.http.post(
       `${this.baseUrl}DonorRequest/PostDonorRequest`,
-      data
+      data,
+      { headers: this.header }
     );
   };
 
@@ -40,14 +48,30 @@ export class DonorRequestService {
   ) => {
     return this.http.patch(
       `${this.baseUrl}DonorRequest/AcceptOrDeclain?DonorRequestId=${donorRequestId}&DonorId=${donorId}&Status=${status}`,
-      null
+      null,
+      { headers: this.header }
     );
   };
 
   isReadDonorRequest = (donorRequestId: number) => {
     return this.http.patch(
       `${this.baseUrl}DonorRequest/UpdateIsRead?DonorRequestId=${donorRequestId}`,
-      null
+      null,
+      { headers: this.header }
     );
+  };
+
+  countDonorRequest = (donorRequestId: number) => {
+    return this.http
+      .get<number>(
+        `${this.baseUrl}DonorRequest/CountOfNotRead?DonorId=${donorRequestId}`,
+        { headers: this.header }
+      )
+      .pipe(
+        map((res) => {
+          this.currentNotificationSource.next(res);
+          return res;
+        })
+      );
   };
 }

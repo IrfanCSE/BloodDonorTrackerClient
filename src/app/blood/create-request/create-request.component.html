@@ -3,6 +3,8 @@
   <input matInput disabled value="REQUEST INFORMATION">
 </mat-form-field>
 
+<button mat-stroked-button color="primary" class="float-right" (click)='onClickBack()'><mat-icon>keyboard_backspace</mat-icon></button>
+
 <div class="d-flex justify-content-around">
   <form [formGroup]="requestForm" (ngSubmit)='OnSubmit()'>
 

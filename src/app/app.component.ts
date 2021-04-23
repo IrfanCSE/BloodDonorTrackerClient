@@ -1,7 +1,10 @@
+import { Observable } from 'rxjs';
 import { User } from './core/models/user';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './account/account.service';
+import { DonorRequestService } from './donor-request/donor-request.service';
+import { DonorService } from './donor/donor.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,14 +12,37 @@ import { AccountService } from './account/account.service';
 })
 export class AppComponent implements OnInit {
   title = 'Blood Donor Tracker';
+  user$: Observable<User>;
+  donorId: any;
 
-  constructor(private service: AccountService, private notify: ToastrService) {}
+  constructor(
+    private service: AccountService,
+    private notify: ToastrService,
+    private donorService: DonorService,
+    private donorReq: DonorRequestService
+  ) {}
   ngOnInit(): void {
     this.loadCurrentUser();
   }
 
-  loadCurrentUser() {
+  loadCurrentUser = () => {
     const token = localStorage.getItem('token');
-    this.service.loadCurrentUser(token).subscribe();
-  }
+    this.service.loadCurrentUser(token).subscribe(() => {
+      this.user$ = this.service.currentUser$;
+      this.loadDonor();
+    });
+  };
+
+  loadDonor = () => {
+    this.user$.subscribe((res) => {
+      this.donorService.getDonor(res.userId).subscribe((res) => {
+        this.donorId = res.donorIdPk;
+        this.loadNotification();
+      });
+    });
+  };
+
+  loadNotification = () => {
+    this.donorReq.countDonorRequest(this.donorId).subscribe();
+  };
 }

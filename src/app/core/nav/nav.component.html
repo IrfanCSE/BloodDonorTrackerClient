@@ -1,5 +1,4 @@
-<div
-  class="d-flex flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm justify-content-between fixed">
+<div class="d-flex flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm justify-content-around">
 
   <img src="assets/logo/bdtLogo.png" height="35px" alt="skinet-logo" routerLink="/">
 
@@ -19,7 +18,20 @@
     </button> -->
   </nav>
 
-  <div class="d-flex align-items-center">
+  <div class="float-right">
+    <button mat-icon-button [matBadge]="notify" *ngIf="(notificationCounter$|async) as notify">
+      <a class="p-2" routerLink="/donor_request" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>notifications_none</mat-icon>
+      </a>
+    </button>
+    <button mat-icon-button *ngIf="(notificationCounter$|async)==0">
+      <a class="p-2" routerLink="/donor_request" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>notifications_none</mat-icon>
+      </a>
+    </button>
+  </div>
+
+  <div class="align-items-center flex-end">
 
     <ng-container *ngIf="(user$|async) == null">
       <div class="btn-group" ngbDropdown>

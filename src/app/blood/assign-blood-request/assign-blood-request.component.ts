@@ -22,11 +22,13 @@ export class AssignBloodRequestComponent implements OnInit {
     private service: BloodService,
     private donorReq: DonorRequestService,
     private fb: FormBuilder,
-    private dialog: MatDialogRef<any>
+    private dialog: MatDialogRef<any>,
   ) {}
 
   ngOnInit() {
     this.loadMyRequest();
+    console.log('this.data');
+    console.log(this.data);
   }
 
   requestForm = this.fb.group({ requestId: ['', Validators.required] });

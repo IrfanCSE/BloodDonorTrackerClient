@@ -16,45 +16,53 @@
 
         <!-- ID Column -->
         <!-- <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
     </ng-container> -->
 
         <!-- Progress Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let row"> {{row.requestDonorName}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="bloodGroup">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Group </th>
+          <th mat-header-cell *matHeaderCellDef> Blood Group </th>
           <td mat-cell *matCellDef="let row"> {{row.bloodGroupName}} </td>
         </ng-container>
 
         <!-- Color Column -->
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <th mat-header-cell *matHeaderCellDef> Date </th>
           <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.donationDate|date}} </td>
         </ng-container>
 
         <ng-container matColumnDef="time">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+          <th mat-header-cell *matHeaderCellDef> Time </th>
           <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.time|date:'shortTime'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="address">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+          <th mat-header-cell *matHeaderCellDef> Address </th>
           <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.address }} </td>
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let row" [style.color]="row.color">
-            <button mat-button (click)="responseView(row.bloodRequestIdPk)">View</button>
+            <button mat-button (click)="responseView(row.bloodRequestIdPk)">
+              <mat-icon>visibility</mat-icon>
+            </button>
             <button mat-button (click)="navigateToEditPage(row.bloodRequestIdPk)"
-              [disabled]='row.isResponsed==true || !row.isActive'>Edit</button>
-            <button mat-button (click)="removeRequest(row.bloodRequestIdPk)" [disabled]='!row.isActive'>Remove</button>
+              [disabled]='row.isResponsed==true || !row.isActive'>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button (click)="removeRequest(row.bloodRequestIdPk)" [disabled]='!row.isActive'>
+              <mat-icon
+                [ngClass]="{'yellow': row.isActive && row.isResponsed,'green': !row.isActive && row.isResponsed,'red': !row.isActive && !row.isResponsed}">
+                done</mat-icon>
+            </button>
           </td>
         </ng-container>
 

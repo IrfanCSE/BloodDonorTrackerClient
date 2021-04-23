@@ -23,13 +23,15 @@ export class DonorService {
 
   getReport = (userId: number) => {
     return this.http.get<Report>(
-      `${this.baseUrl}HealthReport/GetHealthReportById?donorId=${userId}`
+      `${this.baseUrl}HealthReport/GetHealthReportById?donorId=${userId}`,
+      { headers: this.header }
     );
   };
 
   getBloodGroups = () => {
     return this.http.get<CommonDDL>(
-      `${this.baseUrl}HealthReport/GetBloodGroups`
+      `${this.baseUrl}HealthReport/GetBloodGroups`,
+      { headers: this.header }
     );
   };
 
@@ -42,7 +44,8 @@ export class DonorService {
   updateReport = (report: Report) => {
     return this.http.post(
       `${this.baseUrl}HealthReport/PostHealthReport`,
-      report
+      report,
+      { headers: this.header }
     );
   };
 

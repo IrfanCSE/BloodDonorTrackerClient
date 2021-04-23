@@ -4,6 +4,7 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserReg } from '../core/models/userReg';
+import { UpdatUser } from '../core/models/updatUser';
 import { of, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -80,6 +81,26 @@ export class AccountService {
   isEmailExist = (email: string) => {
     return this.http.get<boolean>(
       `${this.baseUrl}Identity/emailExists?email=${email}`
+    );
+  };
+
+  updateCurrentUser = (user: UpdatUser) => {
+    return this.http.put(`${this.baseUrl}Identity/UpdateUser`, user, {
+      headers: this.authHeader(),
+    });
+  };
+
+  changePassword = (
+    userId: string,
+    OldPassword: string,
+    NewPassword: string
+  ) => {
+    return this.http.put(
+      `${this.baseUrl}Identity/PasswordChange?UserId=${userId}&OldPassword=${OldPassword}&NewPassword=${NewPassword}`,
+      null,
+      {
+        headers: this.authHeader(),
+      }
     );
   };
 }

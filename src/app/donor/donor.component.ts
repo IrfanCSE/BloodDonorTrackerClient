@@ -17,6 +17,7 @@ import { PointMapComponent } from '../core/map/point-map/point-map.component';
 export class DonorComponent implements OnInit {
   user$: Observable<User> = new Observable<User>();
   userId: string = '';
+  userName: string;
   donor: UpdateDonor;
   checked: boolean;
   location = { longitude: 0, latitude: 0 };
@@ -31,7 +32,10 @@ export class DonorComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.account.currentUser$;
-    this.user$.subscribe((res) => (this.userId = res.userId));
+    this.user$.subscribe((res) => {
+      this.userId = res.userId;
+      this.userName = `${res.firstName} ${res.lastName}`;
+    });
     this.getDonorInfo();
   }
 

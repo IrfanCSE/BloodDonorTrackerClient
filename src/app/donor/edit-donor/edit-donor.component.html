@@ -3,7 +3,6 @@
   <mat-tab label="Basic Information">
     <form [formGroup]="donorForm" (ngSubmit)='OnSubmit()'>
       <mat-form-field class="example-full-width">
-        <mat-label>help us by your information</mat-label>
         <input matInput disabled value="DONOR INFORMATION">
       </mat-form-field>
 
@@ -12,7 +11,7 @@
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Donor Name</mat-label>
-              <input matInput formControlName="name">
+              <input matInput formControlName="name" readonly value="{{donorName}}">
             </mat-form-field>
           </td>
           <td>
@@ -45,8 +44,8 @@
     <app-health-report></app-health-report>
   </mat-tab>
 
-  <!-- <mat-tab label="Map">
-
-  </mat-tab> -->
+  <mat-tab label="Account">
+    <app-donor-account></app-donor-account>
+  </mat-tab>
 
 </mat-tab-group>

@@ -16,6 +16,7 @@ import { FormBuilder } from '@angular/forms';
 export class EditDonorComponent implements OnInit {
   user$: Observable<User> = new Observable<User>();
   userId: string;
+  donorName: string;
   // donorId: number;
   donor: UpdateDonor;
   location = { longitude: 0, latitude: 0 };
@@ -44,7 +45,7 @@ export class EditDonorComponent implements OnInit {
 
   setDefaultValue = () => {
     this.donorForm.patchValue({
-      name: this.donor?.name,
+      name: this.donorName,
       nid: this.donor?.nid,
       phone: this.donor?.phone,
       address: this.donor?.address,
@@ -60,6 +61,7 @@ export class EditDonorComponent implements OnInit {
     this.user$ = this.account.currentUser$;
     this.user$.subscribe((res) => {
       this.userId = res.userId;
+      this.donorName = `${res.firstName} ${res.lastName}`;
       this.getDonorInfo(this.userId);
     });
   };
@@ -68,9 +70,6 @@ export class EditDonorComponent implements OnInit {
     this.service.getDonor(userId).subscribe((res) => {
       this.donor = res;
       this.donor.userIdFk = userId;
-      // this.donorId = res.donorIdPk;
-      console.log('this.donor');
-      console.log(this.donor);
       this.setDefaultValue();
     });
   };

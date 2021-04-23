@@ -1,7 +1,4 @@
-export interface User {
-  email: string;
-  userName: string;
-  token: string;
+export interface UpdatUser {
   userId: string;
   firstName: string;
   lastName: string;

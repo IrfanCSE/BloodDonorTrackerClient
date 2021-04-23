@@ -13,8 +13,9 @@
 
 <ng-container *ngIf="multiple">
   <agm-map style="height: 500px" [zoom]="15" [latitude]="latitude" [longitude]="longitude">
-    <agm-marker *ngFor="let item of locations" [latitude]="item.latitude" [longitude]="item.longitude">
-      <agm-snazzy-info-window [maxWidth]="300" [maxHeight]="500" [closeWhenOthersOpen]="true">
+    <agm-marker *ngFor="let item of locations" [latitude]="item.latitude" [longitude]="item.longitude" (markerClick)="onSendRequest(item)">
+
+      <!-- <agm-snazzy-info-window [maxWidth]="300" [maxHeight]="500" [closeWhenOthersOpen]="true">
         <ng-template class="row">
 
           <mat-card>
@@ -28,11 +29,23 @@
             </mat-card-content>
             <mat-card-actions>
               <button mat-button class="fa fa-send" (click)='onSendRequest(item.donorIdPk)'></button>
+
+              <form #frm [formGroup]='requestForm' (ngSubmit)='assignRequst(item.donorIdPk)'>
+                <mat-form-field appearance="fill">
+                  <mat-label>Select Your Request</mat-label>
+                  <mat-select formControlName="requestId">
+                    <mat-option *ngFor="let item of bloodRequest" [value]='item.bloodRequestIdPk'>{{item.bloodGroupName.split("(",1)}}|{{item.donationDate|date}}|{{item.donationDate|date:'shortTime'}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button [disabled]="!requestForm.valid" class="btn btn-light" type="submit">Send Request</button>
+              </form>
+
             </mat-card-actions>
           </mat-card>
 
         </ng-template>
-      </agm-snazzy-info-window>
+      </agm-snazzy-info-window> -->
+
     </agm-marker>
   </agm-map>
 </ng-container>

@@ -22,12 +22,11 @@ export class AssignBloodRequestComponent implements OnInit {
     private service: BloodService,
     private donorReq: DonorRequestService,
     private fb: FormBuilder,
-    private dialog: MatDialogRef<any>,
+    private dialog: MatDialogRef<any>
   ) {}
 
   ngOnInit() {
     this.loadMyRequest();
-    console.log('this.data');
     console.log(this.data);
   }
 
@@ -39,10 +38,10 @@ export class AssignBloodRequestComponent implements OnInit {
       .subscribe((res) => (this.bloodRequest = res));
   };
 
-  assignRequst = () => {
+  assignRequst = (donorId?:number) => {
     this.postReq = {
       bloodRequestIdFk: this.requestForm.value.requestId,
-      requestDonorIdFk: this.data?.donorId,
+      requestDonorIdFk: this.data?.donorId??donorId,
       requestUserIdFk: this.data?.seekerId,
     };
 

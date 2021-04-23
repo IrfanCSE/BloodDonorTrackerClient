@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { BloodService } from './../../blood/blood.service';
 import {
   ChangeDetectorRef,
@@ -11,6 +12,9 @@ import { PostDonorRequest } from '../models/postDonorRequest';
 import { AssignBloodRequestComponent } from 'src/app/blood/assign-blood-request/assign-blood-request.component';
 import { AccountService } from 'src/app/account/account.service';
 import { DonorService } from 'src/app/donor/donor.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DonorRequestService } from 'src/app/donor-request/donor-request.service';
+import { GetBloodRequest } from '../models/getBloodRequest';
 
 @Component({
   selector: 'app-map',
@@ -26,25 +30,31 @@ export class MapComponent implements OnInit {
 
   postReq: PostDonorRequest;
   userId: string;
+  bloodRequest: GetBloodRequest[] = [];
   donorId: number;
 
   constructor(
     private _bottomSheet: MatDialog,
     private account: AccountService,
     private service: BloodService,
-    private donorService: DonorService
+    private donorService: DonorService,
+    private fb: FormBuilder,
+    private notify: ToastrService,
+    private donorReq: DonorRequestService
   ) {}
 
   ngOnInit() {
     this.currentUser();
   }
 
-  onSendRequest = (donorId: number) => {
-    
+  onSendRequest = (item: any) => {
+    console.log(item);
+
     this._bottomSheet.open(AssignBloodRequestComponent, {
       data: {
         seekerId: this.donorId,
-        donorId: donorId,
+        isMap:true,
+        donor: item,
       },
     });
   };

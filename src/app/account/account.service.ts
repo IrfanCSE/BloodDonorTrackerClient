@@ -56,7 +56,7 @@ export class AccountService {
   logout = () => {
     localStorage.removeItem('token');
     this.currentUserSource.next();
-    this.router.navigateByUrl('/account');
+    this.router.navigateByUrl('/account').then((x) => window.location.reload());
   };
 
   registerUser = (user: UserReg) => {

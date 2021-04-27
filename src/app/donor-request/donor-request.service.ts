@@ -74,4 +74,15 @@ export class DonorRequestService {
         })
       );
   };
+
+  getSendRequestList = (
+    donorId: number,
+    pageNumber: number,
+    pageSize: number
+  ) => {
+    return this.http.get(
+      `${this.baseUrl}DonorRequest/GetDonorSendRequests?DonorId=${donorId}&pageNumber=${pageNumber}&PageSize=${pageSize}`,
+      { headers: this.header }
+    );
+  };
 }

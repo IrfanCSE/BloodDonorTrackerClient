@@ -35,3 +35,30 @@
 
   <button class="mt-3" [disabled]="!userForm.valid" type="submit" mat-button>Update</button>
 </form>
+
+<button mat-icon-button (click)="togglePassword()">Change Password</button>
+
+<div *ngIf="passField">
+  <form [formGroup]="passwordForm" (ngSubmit)='onPasswordSubmit()'>
+    <mat-form-field class="mt-3">
+      <mat-label>old password</mat-label>
+      <input name="oldPassword" #pwValue type="password" matInput placeholder="pas***rd" value=""
+        formControlName="oldPassword" required>
+      <mat-error *ngIf="passwordForm.controls.oldPassword.touched && passwordForm.controls.oldPassword.invalid">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="mt-3">
+      <mat-label>new password</mat-label>
+      <input name="newPassword" #cwValue type="password" matInput placeholder="c*n**rm" value=""
+        formControlName="newPassword" required>
+      <mat-error *ngIf="passwordForm.controls.newPassword.touched && passwordForm.controls.newPassword.errors?.pattern">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+
+  <button class="mt-3" [disabled]="!passwordForm.valid" type="submit" mat-button>Update Password</button>
+
+  </form>
+</div>

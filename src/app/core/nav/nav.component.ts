@@ -27,6 +27,7 @@ export class NavComponent implements OnInit {
   }
 
   logout = () => {
+    // this.donorReq.countDonorRequest(0).subscribe();
     this.service.logout();
   };
 }

@@ -112,12 +112,16 @@ export class CreateRequestComponent implements OnInit {
 
   setCurrentLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        if (pos) {
-          this.location.longitude = pos.coords.longitude;
-          this.location.latitude = pos.coords.latitude;
-        }
-      });
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          if (pos) {
+            this.location.longitude = pos.coords.longitude;
+            this.location.latitude = pos.coords.latitude;
+          }
+        },
+        (error) => {},
+        { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
+      );
     }
   };
 
@@ -134,7 +138,7 @@ export class CreateRequestComponent implements OnInit {
   };
 
   onClickBack = () => {
-    this.router.navigateByUrl('/my_card')
+    this.router.navigateByUrl('/my_card');
   };
 
   OnSubmit = () => {

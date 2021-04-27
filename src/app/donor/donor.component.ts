@@ -64,12 +64,16 @@ export class DonorComponent implements OnInit {
 
   setCurrentLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        if (pos) {
-          this.location.longitude = pos.coords.longitude;
-          this.location.latitude = pos.coords.latitude;
-        }
-      });
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          if (pos) {
+            this.location.longitude = pos.coords.longitude;
+            this.location.latitude = pos.coords.latitude;
+          }
+        },
+        (error) => {},
+        { enableHighAccuracy: true, maximumAge: 60000, timeout: 5000 }
+      );
     }
   };
 

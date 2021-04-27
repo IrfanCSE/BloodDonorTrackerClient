@@ -1,28 +1,62 @@
-<div class="container-fluid">
-  <table class="table">
-    <tr>
-      <mat-card class="table-bordered table-responsive" *ngFor="let item of donorRequests"
-        [ngClass]="{'setGreen':item.isRead==false}">
-        <button mat-button (click)='onClickHeading(item.donorRequestIdPk)' class="col-12">
-          <mat-card-header>
-            <div mat-card-avatar class="fa fa-medkit"></div>
-            <mat-card-title>
-              Request for "{{item.bloodGroup}}" Blood
-            </mat-card-title>
-            <mat-card-subtitle>{{item.requestUserName}} request you for "{{item.bloodGroup}}" Blood at {{item.address}}
-              on
-              {{item.requestDateTime|date}} at {{item.requestTime|date:'shortTime'}}}.
-            </mat-card-subtitle>
-          </mat-card-header>
-        </button>
-      </mat-card>
-    </tr>
-  </table>
-</div>
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Notification">
+    <div class="container-fluid">
+      <table class="table">
+        <tr>
+          <mat-card class="table-bordered table-responsive" *ngFor="let item of donorRequests"
+            [ngClass]="{'setGreen':item.isRead==false}">
+            <button mat-button (click)='onClickHeading(item.donorRequestIdPk)' class="col-12">
+              <mat-card-header>
+                <div mat-card-avatar class="fa fa-medkit"></div>
+                <mat-card-title>
+                  Request for "{{item.bloodGroup}}" Blood
+                </mat-card-title>
+                <mat-card-subtitle>{{item.requestUserName}} request you for "{{item.bloodGroup}}" Blood at
+                  {{item.address}}
+                  on
+                  {{item.requestDateTime|date}} at {{item.requestTime|date:'shortTime'}}}.
+                </mat-card-subtitle>
+              </mat-card-header>
+            </button>
+          </mat-card>
+        </tr>
+      </table>
+    </div>
 
+    <div class="container-fluid" *ngIf="donorRequests.length==0">
+      <div class="row d-flex">
+        <h5 class="justify-content-center">No Update!</h5>
+      </div>
+    </div>
 
-<div class="container-fluid" *ngIf="donorRequests.length==0">
-  <div class="row d-flex">
-    <h5 class="justify-content-center">No Update!</h5>
-  </div>
-</div>
+  </mat-tab>
+
+  <mat-tab label="Activity">
+    <div class="container-fluid">
+      <table class="table">
+        <tr>
+          <mat-card class="table-bordered table-responsive" *ngFor="let item of sendRequest.data"
+            [ngClass]="{'setGreen':item.isRead==true}">
+            <mat-card-header>
+              <div mat-card-avatar class="fa fa-medkit"></div>
+              <mat-card-title>
+                Request for "{{item.bloodGroup}}" Blood
+              </mat-card-title>
+              <mat-card-subtitle>you request "{{item.requestDonorName}}" for "{{item.bloodGroup}}" Blood at
+                {{item.address}}
+                on
+                {{item.requestDateTime|date}} at {{item.requestTime|date:'shortTime'}}}.
+              </mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </tr>
+      </table>
+    </div>
+
+    <div class="container-fluid" *ngIf="donorRequests.length==0">
+      <div class="row d-flex">
+        <h5 class="justify-content-center">No Update!</h5>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

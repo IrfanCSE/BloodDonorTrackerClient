@@ -19,6 +19,7 @@ export class DonorAccountComponent implements OnInit {
   userId: string;
   // donorId: number;
   // donorName: string;
+  passField: boolean = false;
   userData: UpdatUser;
 
   constructor(
@@ -40,6 +41,19 @@ export class DonorAccountComponent implements OnInit {
     birthday: ['', Validators.required],
   });
 
+  passwordForm = this.fb.group({
+    oldPassword: ['', Validators.required],
+    newPassword: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(
+          '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+        ),
+      ],
+    ],
+  });
+
   getCurrentUser = () => {
     this.user$ = this.account.currentUser$;
     this.user$.subscribe((res: any) => {
@@ -56,9 +70,6 @@ export class DonorAccountComponent implements OnInit {
       lastName: this.userData?.lastName,
       birthday: this.userData?.birthday,
     });
-
-    console.log('this.userData.dateOfBirth');
-    console.log(this.userData.birthday);
   };
 
   onSubmit = () => {
@@ -67,6 +78,21 @@ export class DonorAccountComponent implements OnInit {
       .subscribe((res: any) => {
         this.notify.success(res?.message);
         this.router.navigateByUrl('/donor');
+      });
+  };
+
+  togglePassword = () => {
+    this.passField = !this.passField;
+  };
+
+  onPasswordSubmit = () => {
+    let data = this.passwordForm.value;
+    this.account
+      .changePassword(this.userId, data.oldPassword, data.newPassword)
+      .subscribe((res: any) => {
+        this.notify.success(res?.message);
+        this.account.logout();
+        this.router.navigateByUrl('/account');
       });
   };
 }

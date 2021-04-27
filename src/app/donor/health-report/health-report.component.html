@@ -10,6 +10,9 @@
         <mat-label>Blood Group</mat-label>
         <mat-select formControlName="bloodGroupIdFk">
           <mat-option *ngFor="let item of bloodGroups" [value]="item?.value">{{item?.label}}</mat-option>
+          <mat-error *ngIf="reportForm.controls.bloodGroupIdFk.touched && reportForm.controls.bloodGroupIdFk.invalid">
+            Please select your blood group
+          </mat-error>
         </mat-select>
       </mat-form-field>
 
@@ -21,6 +24,9 @@
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="reportForm.controls.lastDonationDate.touched && reportForm.controls.lastDonationDate.invalid">
+          Please select last donation date
+        </mat-error>
       </mat-form-field>
 
     </div>

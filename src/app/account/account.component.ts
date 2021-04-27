@@ -45,7 +45,9 @@ export class AccountComponent implements OnInit {
   onSubmit() {
     this.service.login(this.loginForm.value).subscribe((res: any) => {
       this.notify.success(`Hi ${res?.userName} , Wellcome back!`);
-      this.router.navigateByUrl(this.returnUrl);
+      this.router
+        .navigateByUrl(this.returnUrl)
+        .then((x) => window.location.reload());
     });
   }
 }

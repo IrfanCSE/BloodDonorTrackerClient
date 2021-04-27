@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -32,9 +32,9 @@ export class HealthReportComponent implements OnInit {
   ) {}
 
   reportForm = this.fb.group({
-    bloodGroupIdFk: [''],
+    bloodGroupIdFk: ['',Validators.required],
     donorIdFk: [''],
-    lastDonationDate: [''],
+    lastDonationDate: ['',Validators.required],
     isAvailable: [''],
   });
 

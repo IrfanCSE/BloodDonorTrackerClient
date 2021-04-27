@@ -17,7 +17,11 @@ export class DonorRequestComponent implements OnInit {
   user$: Observable<User> = new Observable<User>();
   userId: string = '';
   donorId: number;
+  pageNumber: number = 0;
+  pageSize: number = 0;
+  pageCount: number = 0;
   donorRequests: GetDonorRequest[];
+  sendRequest: any;
 
   constructor(
     private service: DonorRequestService,
@@ -48,6 +52,7 @@ export class DonorRequestComponent implements OnInit {
     this.donor.getDonor(this.userId).subscribe((res) => {
       this.donorId = res.donorIdPk;
       this.requestLoad();
+      this.getSendRequestList();
     });
   };
 
@@ -64,6 +69,15 @@ export class DonorRequestComponent implements OnInit {
       .afterClosed()
       .subscribe(() => {
         this.requestLoad();
+      });
+  };
+
+  getSendRequestList = () => {
+    this.service
+      .getSendRequestList(this.donorId, this.pageNumber, this.pageSize)
+      .subscribe((res: any) => {
+        this.sendRequest = res;
+        console.log(this.sendRequest);
       });
   };
 }

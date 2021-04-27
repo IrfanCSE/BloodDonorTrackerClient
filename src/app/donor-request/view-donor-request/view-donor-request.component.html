@@ -1,10 +1,11 @@
+
 <div class="container">
   <div class="row">
     <div class="h3 col">{{donorRequest.requestUserName}}</div>
-    <button mat-button color='warn' (click)='onAction(false)'>
+    <button class="col-1" mat-icon-button color='warn' (click)='onAction(false)'>
       <mat-icon class="col-2">close</mat-icon>
     </button>
-    <button mat-button color='primary' (click)='onAction(true)'>
+    <button class="col-1" mat-icon-button color='primary' (click)='onAction(true)'>
       <mat-icon class="col-2">done</mat-icon>
     </button>
   </div>

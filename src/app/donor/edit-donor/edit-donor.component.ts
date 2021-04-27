@@ -6,7 +6,7 @@ import { AccountService } from 'src/app/account/account.service';
 import { UpdateDonor } from 'src/app/core/models/updateDonor';
 import { User } from 'src/app/core/models/user';
 import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-donor',
@@ -39,8 +39,8 @@ export class EditDonorComponent implements OnInit {
   donorForm = this.fb.group({
     name: [''],
     nid: [''],
-    phone: [''],
-    address: [''],
+    phone: ['', Validators.required],
+    address: ['', Validators.required],
   });
 
   setDefaultValue = () => {
@@ -76,13 +76,17 @@ export class EditDonorComponent implements OnInit {
 
   setCurrentLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        if (pos) {
-          this.location.longitude = pos.coords.longitude;
-          this.location.latitude = pos.coords.latitude;
-          this.updateLocation();
-        }
-      });
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          if (pos) {
+            this.location.longitude = pos.coords.longitude;
+            this.location.latitude = pos.coords.latitude;
+            this.updateLocation();
+          }
+        },
+        () => {},
+        { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true }
+      );
     }
   };
 
@@ -105,13 +109,19 @@ export class EditDonorComponent implements OnInit {
       this.setCurrentLocation();
     }
 
+    // this.service.getPosition().then(pos=>
+    //   {
+    //      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+    //   });
+
     this.service.updateDonor(this.donor).subscribe((res: any) => {
       if (this.newForm && this.isMapAuto) {
         this.setCurrentLocation();
       }
 
       this.notify.success(res?.message);
-      this.router.navigateByUrl('/donor');
+      this.router.navigateByUrl('/donor').then((x) => window.location.reload());
+      // window.location.reload();
     });
   };
 }

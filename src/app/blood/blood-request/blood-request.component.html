@@ -45,11 +45,15 @@
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td mat-cell *matCellDef="let row" [style.color]="row.color">
-            <button mat-button (click)="responseView(row.bloodRequestIdPk)">View</button>
-            <button mat-button (click)="responseRequest(row.bloodRequestIdPk)"
-              [disabled]='row.isResponsed'>Response</button>
+            <button mat-icon-button (click)="responseView(row.bloodRequestIdPk)">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button mat-icon-button (click)="responseRequest(row.bloodRequestIdPk)"
+              [disabled]='row.isResponsed'>
+              <mat-icon>done_outline</mat-icon>
+            </button>
           </td>
         </ng-container>
 

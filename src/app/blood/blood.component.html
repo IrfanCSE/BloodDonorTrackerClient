@@ -36,8 +36,9 @@
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-          <td mat-cell *matCellDef="let row" [style.color]="row.color"> <button mat-button
-              (click)="makeRequest(row.donorIdPk)" class="fa fa-send-o"></button> </td>
+          <td mat-cell *matCellDef="let row" [style.color]="row.color">
+            <button mat-icon-button (click)="makeRequest(row.donorIdPk)"><mat-icon>send</mat-icon></button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

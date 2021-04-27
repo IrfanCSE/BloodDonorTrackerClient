@@ -18,6 +18,9 @@
             <mat-form-field class="example-full-width">
               <mat-label>Phone Number</mat-label>
               <input matInput formControlName="phone">
+              <mat-error *ngIf="donorForm.controls.phone.touched && donorForm.controls.phone.invalid">
+                phone number is required
+              </mat-error>
             </mat-form-field>
           </td>
           <td>
@@ -33,10 +36,13 @@
         <mat-form-field class="example-full-width">
           <mat-label>Address</mat-label>
           <textarea formControlName="address" matInput placeholder="chittagong, bangladesh"></textarea>
+          <mat-error *ngIf="donorForm.controls.address.touched && donorForm.controls.address.invalid">
+            address is required
+          </mat-error>
         </mat-form-field>
       </p>
 
-      <button type="submit" mat-button>Update</button>
+      <button type="submit" [disabled]="!donorForm.valid" mat-button>Update</button>
     </form>
   </mat-tab>
 

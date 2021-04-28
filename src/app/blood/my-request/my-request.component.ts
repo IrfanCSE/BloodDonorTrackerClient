@@ -11,6 +11,7 @@ import { BloodService } from '../blood.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewRequestComponent } from '../blood-request/view-request/view-request.component';
 import { PageEvent } from '@angular/material/paginator';
+import { ViewDonorComponent } from 'src/app/donor/view-donor/view-donor.component';
 
 @Component({
   selector: 'app-my-request',
@@ -94,7 +95,7 @@ export class MyRequestComponent implements OnInit {
         this.pageNumber = res.pageNumber;
         this.pageSize = res.pageSize;
 
-        console.log("this.pageSize first");
+        console.log('this.pageSize first');
         console.log(this.pageSize);
       });
   };

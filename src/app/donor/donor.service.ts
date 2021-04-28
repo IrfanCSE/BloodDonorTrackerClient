@@ -21,6 +21,13 @@ export class DonorService {
     );
   };
 
+  getDonorById = (donorId: number) => {
+    return this.http.get<UpdateDonor>(
+      `${this.baseUrl}Donor/GetDonorByNumberId?donorId=${donorId}`,
+      { headers: this.header }
+    );
+  };
+
   getReport = (userId: number) => {
     return this.http.get<Report>(
       `${this.baseUrl}HealthReport/GetHealthReportById?donorId=${userId}`,

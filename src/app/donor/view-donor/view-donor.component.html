@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="fa fa-heartbeat"></div>
+    <mat-card-title>Donor_Information</mat-card-title>
+    <mat-card-subtitle>summery</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu"> -->
+  <mat-card-content>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Donor Name</mat-label>
+            <input matInput disabled value="{{data?.name}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput disabled value="{{data?.phone}}">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Blood Type</mat-label>
+            <input matInput disabled value="{{data?.bloodGorup}}">
+          </mat-form-field>
+        </td>
+        <!-- <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>NID</mat-label>
+            <input matInput disabled value="{{data?.nid}}">
+          </mat-form-field>
+        </td> -->
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput disabled value="{{data?.address}}">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

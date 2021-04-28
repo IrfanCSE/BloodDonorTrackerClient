@@ -23,8 +23,9 @@
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>Donor</mat-label>
-            <input matInput disabled
-              value="{{data.responsedDonorName==null?'No One Responsed Yet!':data.responsedDonorName}}">
+            <button mat-button (click)="viewDonorById(data.responsedDonorFk)">
+              {{data.responsedDonorName==null?'No One Responsed Yet!':data.responsedDonorName}}
+            </button>
           </mat-form-field>
         </td>
         <td>

@@ -23,7 +23,7 @@
         <td>
           <mat-form-field class="example-full-width">
             <mat-label>Donor</mat-label>
-            <button mat-button (click)="viewDonorById(data.responsedDonorFk)">
+            <button mat-button (click)="viewDonorById(data.responsedDonorFk==null?0:data.requestDonorFk)">
               {{data.responsedDonorName==null?'No One Responsed Yet!':data.responsedDonorName}}
             </button>
           </mat-form-field>

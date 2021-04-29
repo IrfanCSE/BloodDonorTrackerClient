@@ -34,7 +34,7 @@ export class HealthReportComponent implements OnInit {
   reportForm = this.fb.group({
     bloodGroupIdFk: ['',Validators.required],
     donorIdFk: [''],
-    lastDonationDate: ['',Validators.required],
+    lastDonationDate: [new Date(Date.now()),Validators.required],
     isAvailable: [''],
   });
 

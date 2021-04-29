@@ -56,9 +56,11 @@ export class ViewRequestComponent implements OnInit {
   };
 
   viewDonorById = (donorId: number) => {
-    this.donorService.getDonorById(donorId).subscribe((res) => {
-      this._bottomSheet.close();
-      this.dialog.open(ViewDonorComponent, { data: res });
-    });
+    if (donorId !== 0) {
+      this.donorService.getDonorById(donorId).subscribe((res) => {
+        this._bottomSheet.close();
+        this.dialog.open(ViewDonorComponent, { data: res });
+      });
+    }
   };
 }

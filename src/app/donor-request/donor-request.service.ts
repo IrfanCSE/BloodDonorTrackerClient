@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DonorRequestService {
-  currentNotificationSource = new BehaviorSubject<number>(1);
+  currentNotificationSource = new BehaviorSubject<number>(0);
   currentNotification$ = this.currentNotificationSource.asObservable();
 
   baseUrl = environment.baseUrl;

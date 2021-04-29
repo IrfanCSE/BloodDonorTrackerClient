@@ -19,7 +19,7 @@ import { AssignBloodRequestComponent } from './assign-blood-request/assign-blood
 export class BloodComponent implements OnInit {
   userId: string;
   pageNumber: number = 0;
-  pageSize: number = 0;
+  pageSize: number = 50;
   pageCount: number = 0;
   donor: UpdateDonor;
 

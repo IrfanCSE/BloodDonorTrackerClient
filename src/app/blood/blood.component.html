@@ -1,6 +1,14 @@
 <mat-tab-group mat-align-tabs="start">
 
-  <mat-tab label="Blood Donor">
+  <mat-tab label="Donor Map">
+
+    <app-map [multiple]='true' [locations]='locations' [longitude]="donor.longitude" [latitude]="donor.latitude">
+    </app-map>
+
+  </mat-tab>
+
+
+  <mat-tab label="Donor List">
 
     <!-- <mat-form-field>
   <mat-label>Filter</mat-label>
@@ -51,16 +59,9 @@
       </table>
 
       <mat-paginator (page)="pageEvent = getServerData($event)" [pageSize]='pageSize' [pageIndex]='0'
-        [length]='pageCount' [pageSizeOptions]="[10,20,50]">
+        [length]='pageCount' [pageSizeOptions]="[20,50,100]">
       </mat-paginator>
     </div>
-
-  </mat-tab>
-
-  <mat-tab label="Map">
-
-    <app-map [multiple]='true' [locations]='locations' [longitude]="donor.longitude" [latitude]="donor.latitude">
-    </app-map>
 
   </mat-tab>
 

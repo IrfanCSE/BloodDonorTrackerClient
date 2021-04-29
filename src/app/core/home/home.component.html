@@ -1,47 +1,53 @@
 <main class="container">
-  <ngb-carousel *ngIf="images">
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[0]" alt="Random first slide">
-      </div>
-      <div class="carousel-caption" style="color: black;">
-        <h3>Blood Donor</h3>
-        <p>A blood donation occurs when a person voluntarily has blood drawn and used for transfusions and/or made into
-          biopharmaceutical medications by a process called fractionation.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[1]" alt="Random second slide">
-      </div>
-      <div class="carousel-caption" style="color: black;">
-        <h3>Blood Sample</h3>
-        <p>Some of the more common blood tests a doctor may order include: Complete blood count (CBC). This test
-          measures the presence of 10 cell types in the white blood cells, red blood cells, and platelets.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[2]" alt="Random third slide">
-      </div>
-      <div class="carousel-caption" style="color: black;">
-        <h3>Benefits</h3>
-        <p>During the donation · You'll be seated in a reclining chair. You can donate blood either sitting or lying
-          down. · A small area of your arm will be cleaned</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[3]" alt="Random fourth slide">
-      </div>
-      <div class="carousel-caption" style="color: black;">
-        <h3>More you should know</h3>
-        <p>Giving blood can reveal potential health problems, Giving blood can reduce harmful iron stores, Giving blood
-          may lower your risk of suffering a heart attack, Giving blood may reduce your risk of developing cancer,
-          Giving blood can help your liver stay healthy.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
+  <mat-card>
+    <mat-card-content>
+      <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[0]" alt="Random first slide">
+          </div>
+          <div class="carousel-caption" style="color: black;">
+            <h3>Blood Donor</h3>
+            <p>A blood donation occurs when a person voluntarily has blood drawn and used for transfusions and/or made
+              into
+              biopharmaceutical medications by a process called fractionation.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[1]" alt="Random second slide">
+          </div>
+          <div class="carousel-caption" style="color: black;">
+            <h3>Blood Sample</h3>
+            <p>Some of the more common blood tests a doctor may order include: Complete blood count (CBC). This test
+              measures the presence of 10 cell types in the white blood cells, red blood cells, and platelets.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[2]" alt="Random third slide">
+          </div>
+          <div class="carousel-caption" style="color: black;">
+            <h3>Benefits</h3>
+            <p>During the donation · You'll be seated in a reclining chair. You can donate blood either sitting or lying
+              down. · A small area of your arm will be cleaned</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[3]" alt="Random fourth slide">
+          </div>
+          <div class="carousel-caption" style="color: black;">
+            <h3>More you should know</h3>
+            <p>Giving blood can reveal potential health problems, Giving blood can reduce harmful iron stores, Giving
+              blood
+              may lower your risk of suffering a heart attack, Giving blood may reduce your risk of developing cancer,
+              Giving blood can help your liver stay healthy.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </mat-card-content>
+  </mat-card>
 
   <div class="row mt-5">
 
@@ -80,31 +86,34 @@
 
 <div class="footer-dark">
   <footer>
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-6 col-md-3 item">
-                  <h3>Services</h3>
-                  <ul>
-                      <li><a href="#">Web design</a></li>
-                      <li><a href="#">Development</a></li>
-                      <li><a href="#">Hosting</a></li>
-                  </ul>
-              </div>
-              <div class="col-sm-6 col-md-3 item">
-                  <h3>About</h3>
-                  <ul>
-                      <li><a href="#">Company</a></li>
-                      <li><a href="#">Team</a></li>
-                      <li><a href="#">Careers</a></li>
-                  </ul>
-              </div>
-              <div class="col-md-6 item text">
-                  <h3>East Delta University</h3>
-                  <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-              </div>
-              <div class="col item social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-snapchat"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-          </div>
-          <p class="copyright">East Delta University © 2021</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 item">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#">Web design</a></li>
+            <li><a href="#">Development</a></li>
+            <li><a href="#">Hosting</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-md-3 item">
+          <h3>About</h3>
+          <ul>
+            <li><a href="#">Company</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 item text">
+          <h3>East Delta University</h3>
+          <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus
+            elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+        </div>
+        <div class="col item social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
+              class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-snapchat"></i></a><a href="#"><i
+              class="fa fa-instagram"></i></a></div>
       </div>
+      <p class="copyright">East Delta University © 2021</p>
+    </div>
   </footer>
 </div>

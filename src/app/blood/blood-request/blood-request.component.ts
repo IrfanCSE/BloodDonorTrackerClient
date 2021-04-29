@@ -21,7 +21,7 @@ export class BloodRequestComponent implements OnInit {
   userId: string;
   donorId: number;
   pageNumber: number = 0;
-  pageSize: number = 0;
+  pageSize: number = 50;
   pageCount: number = 0;
   pageEvent: PageEvent;
   // requests: GetBloodRequest[];

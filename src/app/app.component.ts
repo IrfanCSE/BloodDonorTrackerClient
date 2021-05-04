@@ -29,20 +29,6 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('token');
     this.service.loadCurrentUser(token).subscribe(() => {
       this.user$ = this.service.currentUser$;
-      this.loadDonor();
     });
-  };
-
-  loadDonor = () => {
-    this.user$.subscribe((res) => {
-      this.donorService.getDonor(res.userId).subscribe((res) => {
-        this.donorId = res.donorIdPk;
-        this.loadNotification();
-      });
-    });
-  };
-
-  loadNotification = () => {
-    this.donorReq.countDonorRequest(this.donorId).subscribe();
   };
 }

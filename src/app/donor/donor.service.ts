@@ -72,6 +72,15 @@ export class DonorService {
     );
   };
 
+  setSignalrConnection = (userId: string, connection: string) => {
+    localStorage.setItem('connectionId', connection);
+    return this.http.put(
+      `${this.baseUrl}Donor/SetSinglerConnection?userId=${userId}&connection=${connection}`,
+      null,
+      { headers: this.header }
+    );
+  };
+
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
